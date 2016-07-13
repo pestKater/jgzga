@@ -1,0 +1,54 @@
+.lastpostavatar {
+	float: left;
+	position: relative;
+}
+
+.lastpostavatar:before {
+	content: "\f21b";
+	font-family: "FontAwesome";
+	font-size: 12px;
+	left: 0;
+	line-height: 48px;
+	opacity: 0.3;
+	position: absolute;
+	right: 10px;
+	text-align: center;
+	z-index: 1;
+}
+
+.lastpostavatar img {
+	background-color: rgba(0, 0, 0, 0.05);
+	border-radius: 100%;
+	display: inline-block;
+	margin-right: 12px;
+	float: left;
+	font-size: 0;
+	line-height: 30px;
+	overflow: hidden;
+	position: relative;
+	z-index: 2;
+}
+
+.fora-bg .lastpostavatar img {
+	margin-bottom: 9px;
+	margin-top: 9px;
+}
+
+.forum-bg .lastpostavatar img {
+	margin-bottom: 1px;
+	margin-top: 1px;
+}
+
+.rtl .lastpostavatar{ 
+	float: right;
+}
+
+.rtl .lastpostavatar img { 
+	margin-right: 0;
+	margin-left: 12px;
+	float: right;
+}
+
+@media (max-width: 700px) {
+	.lastpostavatar { display: none; }
+}

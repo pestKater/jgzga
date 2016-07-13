@@ -1,0 +1,61 @@
+body {
+	background-color:#222222;
+	font-family: "Open Sans";
+}
+
+.server-wrapper {
+	width:95%;
+}
+
+.server {
+	background-color:#343434;
+	margin-bottom:20px;
+	border-radius:2px;
+	transition: 1s;
+	color:#fafafa;
+}
+
+.server:hover {
+	background-color:#525252;
+}
+
+
+.server h4 {
+	width:100%;
+	text-align: center;
+	margin:0;
+	padding:10px;
+}
+
+.server:hover h4{
+	color:#ddd;
+}
+
+.infos {
+	padding:0;
+	margin: 0;
+	float:left;
+	font-size: 90%;
+}
+
+.infos ul .nomission {
+	font-style: italic;
+	font-weight: normals;
+}
+
+.infos ul {
+	list-style:none;
+	padding:10px;
+	margin: 0;
+}
+
+.infos ul span {
+	font-weight: bold;
+}
+
+
+
+
+.clear-float {
+	clear:both;
+}

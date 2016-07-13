@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!DOCTYPE squad SYSTEM "squad.dtd">
+<?xml-stylesheet href="squad.xsl?" type="text/xsl"?>
+<squad nick="Jägerzug Achilles I">
+	<name>Jägerzug Achilles I</name>
+	<email>kooperation@jaegerzug-achilles.de</email>
+	<web>http://www.jaegerzug-achilles.de</web>
+	<picture>logo.paa</picture>
+	<title>JgZg-A</title>
+	
+	<!-- ZUGTRUPP -->
+	
+	<member id="76561198028031220" nick="[JgZg-A] Steff">
+		<name>Steff</name>
+		<email>kooperation@jaegerzug-achilles.de</email>
+		<icq>none</icq>
+		<remark>ZgFhr</remark>
+	</member>
+	<member id="76561198044227525" nick="[JgZg-A]pestKater">
+		<name>pestKater</name>
+		<email>administration@jaegerzug-achilles.de</email>
+		<icq>none</icq>
+		<remark>ZgTrp</remark>
+	</member>
+	
+	<!-- 1. GRUPPE -->
+	
+	<member id="76561198015594550" nick="[JgZg-A]Jackson1st">
+		<name>Jackson1st</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>1. Gruppe</remark>
+	</member>
+	<member id="76561197977353491" nick="[JgZg-A]Schmitt">
+		<name>Schmitt</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>1. Gruppe</remark>
+	</member>
+	
+	<!-- 2. GRUPPE -->
+	
+	<member id="76561197984157534" nick="[JgZg-A]Deadeye">
+		<name>Deadeye</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>2. Gruppe</remark>
+	</member>
+	<member id="76561198003053391" nick="[JgZg-A]Steed">
+		<name>Steed</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>2. Gruppe</remark>
+	</member>
+	<member id="76561197972363869" nick="[JgZg-A]Horni">
+		<name>Horni</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>2. Gruppe</remark>
+	</member>
+	<member id="76561197983808118" nick="[JgZg-A]Lobo">
+		<name>Lobo</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>2. Gruppe</remark>
+	</member>
+	<member id="76561198042626105" nick="[JgZg-A]Freshiii">
+		<name>Freshiii</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>2. Gruppe</remark>
+	</member>
+	<member id="76561198079369571" nick="[JgZg-A]Coyote">
+		<name>Coyote</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>2. Gruppe</remark>
+	</member>
+	<member id="76561197970328579" nick="[JgZg-A]Sense">
+		<name>Sense</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>2. Gruppe</remark>
+	</member>
+	
+	<!-- 3. Gruppe -->
+	
+	<member id="76561197960968900" nick="[JgZg-A]Bull">
+		<name>Bull</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>3. Gruppe</remark>
+	</member>
+	<member id="76561198037712956" nick="[JgZg-A]Feldhobel">
+		<name>Feldhobel</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>3. Gruppe</remark>
+	</member>
+	<member id="76561198043487944" nick="[JgZg-A]SpeZBen">
+		<name>Bull</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>3. Gruppe</remark>
+	</member>
+	<member id="76561198108379943" nick="[JgZg-A]Dr.KD">
+		<name>Dr.KD</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>3. Gruppe</remark>
+	</member>
+	<member id="76561197970588957" nick="[JgZg-A]Fuzi">
+		<name>Fuzi</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>3. Gruppe</remark>
+	</member>
+	<member id="76561198068108892" nick="[JgZg-A]Levister">
+		<name>Levister</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>3. Gruppe</remark>
+	</member>
+	
+	<!-- STABSSTELLEN -->
+	
+	<member id="76561198044227525" nick="[JgZg-A]DasMaeh">
+		<name>DasMaeh</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>Public Manager</remark>
+	</member>
+	<member id="76561198002549396" nick="[JgZg-A]Scobe">
+		<name>Scobe</name>
+		<email>none</email>
+		<icq>none</icq>
+		<remark>Public Manager</remark>
+	</member>
+</squad>

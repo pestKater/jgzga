@@ -1,3 +1,7 @@
 config.php
+!phpbb/config/config.php
+!phpbb/db/migration/tool/config.php
+!phpbb/di/extension/config.php
+!phpbb/search/sphinx/config.php
 cache/*
 images/avatars/*

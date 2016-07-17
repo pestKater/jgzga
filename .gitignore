@@ -5,3 +5,4 @@ config.php
 !phpbb/search/sphinx/config.php
 cache/*
 images/avatars/*
+nbproject/

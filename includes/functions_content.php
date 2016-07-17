@@ -815,7 +815,14 @@ function make_clickable_callback($type, $whitespace, $url, $relative_url, $class
 	$text	= htmlspecialchars($text);
 	$append	= htmlspecialchars($append);
 
-	$html	= "$whitespace<!-- $tag --><a$class href=\"$url\">$text</a><!-- $tag -->$append";
+	if ($type == MAGIC_URL_EMAIL)
+    {
+        $html    = "$whitespace<!-- $tag --><a$class href=\"$url\">$text</a><!-- $tag -->$append";    
+    }
+    else 
+    {
+        $html    = "$whitespace<!-- $tag --><a$class href=\"$url\" target=\"_blank\">$text</a><!-- $tag -->$append";
+    }
 
 	return $html;
 }

@@ -1,0 +1,52 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- EVENT nickvergessen_newspage_before -->
+
+<h2><!-- IF NEWS_ONLY --><a href="{postrow.U_NEWS}">{NEWS_TITLE}</a><!-- ELSE -->{L_NEWS}<!-- ENDIF --></h2>
+<!-- EVENT nickvergessen_newspage_title_after -->
+
+<!-- IF .archive_block or .cat_block or (PAGE_NUMBER and PAGINATION) or TOTAL_NEWS -->
+<br />
+<!-- EVENT nickvergessen_newspage_filters_before -->
+<div class="action-bar">
+	<!-- INCLUDE newspage_categories_dropdown.html -->
+	<!-- INCLUDE newspage_archives_dropdown.html -->
+	<!-- INCLUDE newspage_settings.html -->
+
+	<!-- IF (PAGE_NUMBER and PAGINATION) or TOTAL_NEWS -->
+	<div class="pagination">
+		{TOTAL_NEWS} &bull;
+		<!-- IF .pagination -->
+			<!-- INCLUDE pagination.html -->
+		<!-- ELSE -->
+			{PAGE_NUMBER}
+		<!-- ENDIF -->
+	</div>
+	<!-- ENDIF -->
+</div>
+<!-- EVENT nickvergessen_newspage_filters_after -->
+<!-- ENDIF -->
+
+<!-- IF .postrow -->
+	<!-- INCLUDE viewtopic_postrow.html -->
+<!-- ELSE -->
+<div class="panel">
+	<div class="inner">
+		<strong>{L_NO_NEWS}</strong>
+	</div>
+</div>
+<!-- ENDIF -->
+
+<!-- IF .pagination -->
+<hr class="divider" />
+<div class="action-bar">
+	<div class="pagination">
+		{TOTAL_NEWS} &bull; <!-- INCLUDE pagination.html -->
+	</div>
+</div>
+<br />
+<!-- ENDIF -->
+
+<!-- EVENT nickvergessen_newspage_after -->
+
+<!-- INCLUDE overall_footer.html -->

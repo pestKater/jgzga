@@ -16,9 +16,17 @@
         <div class="unit">
             <h3>{unit.GROUPNAME}</h3>
             <p>{unit.DESCR}</p>
+            
+            <!-- BEGIN unit.member -->
             <div class="unitmember" style="background-color:red;">
-                <img src="#">
+                <p>{unit.member.USERNAME}</p>
+                <p>{unit.member.AVATAR}</p>
+                <p>{unit.member.USERID}</p>
+                <p>{unit.member.RANK}</p>
+                <p>{unit.member.RANKIMAGE}</p>
             </div>
+            <!-- END unit.member -->
+            
         </div>
         <!-- END unit -->
     </div>

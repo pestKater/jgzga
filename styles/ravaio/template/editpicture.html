@@ -1,0 +1,43 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id="sub-header">
+    <div class="chunk">
+        <div class="sub-header-title">
+            <h2 class="titlespace">
+                <!-- IF NEWPICTURE -->
+                    Bild hochladen
+                <!-- ELSE -->
+                    Bild bearbeiten: {NAME}
+                <!-- ENDIF -->
+            </h2>
+        </div>
+    </div>
+</div>
+
+<div class="background-main">
+    <div class="chunk">
+        <div class="panel">
+            <div class="inner">                
+                <div id="message-box">
+                    <form method="POST" action="gallery/edit.php">
+                        <!-- IF not NEWPICTURE -->
+                            <img src="images/gallery/{PICTUREID}.jpg">
+                        <!-- ENDIF -->
+                        <input placeholder="Titel" class="input" type="text" name="title" id="title" size="45" max="120" tabindex="2" value="{NAME}">
+                        <textarea class="input" name="description" id="description" rows="15" cols="76" tabindex="4" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onfokus="initInsertions();" placeholder="Beschreibung">{DESCRIPTION}</textarea> 
+                        <!-- IF NEWPICTURE -->
+                            <input id="file" type="file" name="file">
+                        <!-- ENDIF -->
+                        <input type="hidden" name="date" id="date" value="{DATE}">
+                        <input type="hidden" name="author" id="author" value="{AUTHOR}">
+                        <input type="submit" accesskey="s" tabindex="6" name="post" value="Absenden" class="button">
+                    </form>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+
+<!-- INCLUDE jumpbox.html -->
+<!-- INCLUDE overall_footer.html -->

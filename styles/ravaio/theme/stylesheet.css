@@ -19,6 +19,9 @@
 .unit h3 img {
     margin-bottom:20px;
 }
+.unit p {
+    font-size:1.2em;
+}
 .members {
     width:800px;
     margin:auto;

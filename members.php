@@ -8,9 +8,9 @@
     $user->session_begin();
     $auth->acl($user->data);
     $user->setup();
-
+    
     // Inits Languagefile
-    page_header('Members');
+    page_header('test');
     
     // Groups that should displayed
     $group_ids = array(
@@ -18,70 +18,57 @@
         9,
     );
     
-    // Initialize Data-Array
     $data = array();
     
     // Get Groups from Database
-    $sql = 'SELECT group_id, group_name, group_desc FROM ' . GROUPS_TABLE . ' WHERE ' . $db->sql_in_set('group_id', $group_ids);
+    $sql = 'SELECT group_id, group_name, group_desc, group_avatar FROM ' . GROUPS_TABLE . ' WHERE ' . $db->sql_in_set('group_id', $group_ids);
     $result = $db->sql_query($sql);
     
     // Write Data for each Group
     while ($row = $db->sql_fetchrow($result)) {
-        $data[$row['group_id']]['groupid'] = $row['group_id'];
-        $data[$row['group_id']]['groupname'] = $row['group_name'];
-        $data[$row['group_id']]['description'] = $row['group_desc'];
-        $data[$row['group_id']]['users'] = array();
-        
-        // Get Groupmembers from Database
-        $sqlusers = 'SELECT user_id FROM ' . USER_GROUP_TABLE . ' WHERE group_id = ' . $row['group_id'];
-        $users = $db->sql_query($sqlusers);
-        
-        // Get User from Database
-        while ($user = $db->sql_fetchrow($users)) {
-            $sqluserdata = 'SELECT user_id, username, user_avatar, user_rank FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user['user_id'];
-            $userdata = $db->sql_query($sqluserdata);
-            
-            // Write Data for each User
-            while($single = $db->sql_fetchrow($userdata)) {
-                $data[$row['group_id']]['users'][$single['user_id']]['userid'] =  $single['user_id'];
-                $data[$row['group_id']]['users'][$single['user_id']]['username'] =  $single['username'];
-                $data[$row['group_id']]['users'][$single['user_id']]['avatar'] =  $single['user_avatar'];
-                
-                // Get Ranks from Database
-                $sqlrank = 'SELECT rank_title, rank_image FROM ' . RANKS_TABLE . ' WHERE rank_id = ' . $single['user_rank'];
-                $rank = $db->sql_query($sqlrank);
-                
-                // Write Ranks to User
-                while($singlerank = $db->sql_fetchrow($rank)) {
-                    $data[$row['group_id']]['users'][$single['user_id']]['rank'] =  $singlerank['rank_title'];
-                    $data[$row['group_id']]['users'][$single['user_id']]['rankimage'] =  $singlerank['rank_image'];
-                }
-                $db->sql_freeresult($rank);
-            }
-            $db->sql_freeresult($userdata);
-        } 
-        $db->sql_freeresult($users);
+        $data[$row['group_id']]['id'] = $row['group_id'];
+        $data[$row['group_id']]['name'] = $row['group_name'];
+        $data[$row['group_id']]['desc'] = $row['group_desc'];
+        $data[$row['group_id']]['avatar'] = $row['group_avatar'];
     }
     $db->sql_freeresult($result);
     
-    // Give the Data to the Template
-    foreach($data as $unit) {
+    foreach($data as $group) {
         
         $template->assign_block_vars('unit', array(
-            'GROUPNAME'     => $unit['groupname'],
-            'DESCRIPTION'   => $unit['description'],
+            'NAME'          => $group['name'],
+            'DESCRIPTION'   => $group['desc'],
+            'LOGO'        => $group['avatar']
         ));
         
-        foreach($unit['users'] as $member) {
+        $sql_arr = array(
+            'SELECT'    => 'u.user_id, u.username, u.user_avatar, r.rank_title, r.rank_image',
+            'FROM'      => array(
+                USER_GROUP_TABLE => 'g',
+                USERS_TABLE => 'u',
+                RANKS_TABLE => 'r'
+            ),
+            'WHERE'     => 'g.group_id = '. $group['id'] . ' AND u.user_id = g.user_id AND u.user_rank = r.rank_id ORDER BY r.rank_image DESC',
+        );
+        $sql = $db->sql_build_query('SELECT', $sql_arr);
+        $result = $db->sql_query($sql);
+        
+        while($row = $db->sql_fetchrow($result)) {
+            $data[$group['id']]['users'][$row['user_id']] = array(
+                'id'        => $row['user_id'],
+                'name'      => $row['username'],
+                'avatar'    => $row['user_avatar'],
+                'rank'      => $row['rank_title'],
+                'rankimage' => $row['rank_image']
+            );
             $template->assign_block_vars('unit.member', array(
-                'USERID'    => $member['userid'],
-                'USERNAME'  => $member['username'],
-                'AVATAR'    => $member['avatar'],
-                'RANK'      => $member['rank'],
-                'RANGIMAGE' => $member['rankimage'],
+                'USERNAME'  => $row['username'],
+                'AVATAR'    => $row['user_avatar'],
+                'USERID'    => $row['user_id'],
+                'RANK'      => $row['rank_title'],
+                'RANKIMAGE' => $row['rank_image'],
             ));
         }
-       
     }
     
     // Load Template

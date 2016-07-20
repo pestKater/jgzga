@@ -10,23 +10,24 @@
 
 <div class="background-main">
     <div class="chunk">
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    
         <!-- BEGIN unit -->
         <div class="unit">
-            <h3>{unit.GROUPNAME}</h3>
-            <p>{unit.DESCR}</p>
+            <h3><img src="./../download/file.php?avatar={unit.LOGO}"><br>
+                {unit.NAME}</h3>
+            <p>{unit.DESCRIPTION}</p>
+            
+            <div class="members">
             
             <!-- BEGIN unit.member -->
-            <div class="unitmember" style="background-color:red;">
-                <p>{unit.member.USERNAME}</p>
-                <p>{unit.member.AVATAR}</p>
-                <p>{unit.member.USERID}</p>
-                <p>{unit.member.RANK}</p>
-                <p>{unit.member.RANKIMAGE}</p>
+            <div class="unitmember">
+                <img src="images/ranks/{unit.member.RANKIMAGE}">
+                <p><a href="memberlist.php?mode=viewprofile&u={unit.member.USERID}">{unit.member.USERNAME}</a><br>
+                <span class="rank">{unit.member.RANK}</span></p>
             </div>
-            <!-- END unit.member -->
             
+            <!-- END unit.member -->
+            <div class="clear"></div>
+            </div>
         </div>
         <!-- END unit -->
     </div>

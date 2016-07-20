@@ -7,6 +7,46 @@
 	border:1px solid white;
 }
 
+.unit {
+    margin-bottom: 40px;
+}
+.unit h3 {
+    width:100%;
+    text-align:center;
+    margin-bottom:20px;
+    font-size:2em;
+}
+.unit h3 img {
+    margin-bottom:20px;
+}
+.members {
+    width:800px;
+    margin:auto;
+}
+.unitmember {
+    width:360px;
+    margin:10px;
+    float:left;
+    padding:10px;
+    transition: all 0.5s;
+}
+.unitmember:hover {
+    background-color:#2C3940;
+}
+.unitmember img {
+    float:left;
+    margin-right:20px;
+    padding-top:2px;
+}
+.unitmember p {
+    font-size:1.2em;
+    line-height:1.1;
+    padding-top:2px;
+}
+.rank {
+    font-size: 0.8em;
+}
+
 *,
 *:before,
 *:after {

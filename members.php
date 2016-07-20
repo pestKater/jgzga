@@ -10,7 +10,7 @@
     $user->setup();
     
     // Inits Languagefile
-    page_header('test');
+    page_header('Angehörige');
     
     // Groups that should displayed
     $group_ids = array(

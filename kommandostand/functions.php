@@ -108,4 +108,34 @@ function changeServerlock($serverId, $admin_wert) {
 	
 	$pdo->query($sql);
 }
+
+/**
+* Empfängt alle Werte der Tabelle 'tbl_server' und gibt diese zurück
+*/
+function getServerInfos($serverId) {
+	$pdo = new PDO('mysql:host=localhost;dbname=website', 'root', '');
+	$sql = 'SELECT name, port, server_dir, exe, gametype, basic_cfg, server_cfg, admin, params FROM tbl_server WHERE id = ' . $serverId;
+	
+	$pdo->query($sql);
+	
+	foreach ($pdo->query($sql) as $row) {
+		
+	}
+	return $row;
+}
+
+/**
+* Empfängt alle Werte der Tabelle 'tbl_modstrings' und gibt diese zurück
+*/
+function getModstringInfos($modstringId) {
+	$pdo = new PDO('mysql:host=localhost;dbname=website', 'root', '');
+	$sql = 'SELECT gametype, name, moddir, moddir_serv, moddir_cust, modstring, modstring_serv, modstring_cust FROM tbl_modstrings WHERE id = ' . $modstringId;
+	
+	$pdo->query($sql);
+	
+	foreach ($pdo->query($sql) as $row) {
+		
+	}
+	return $row;
+}
 ?>

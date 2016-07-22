@@ -48,9 +48,10 @@
             page_header('Neues Bild');
             
             $template->assign_vars(array(
-                'NEWPICTURE' => true,
-                'DATE'      => date("Y-m-d"),
-                'AUTHOR'    => $user->data['user_id'],
+                'NEWPICTURE'    => true,
+                'DATE'          => date("Y-m-d"),
+                'AUTHOR'        => $user->data['user_id'],
+                'MODE'          => 'new',
             ));
         } elseif($mode == 'edit') {
             $picture = request_var('id', '1');
@@ -76,6 +77,7 @@
                 'DESCRIPTION'   => $descr,
                 'DATE'          => $date,
                 'AUTHOR'        => $author,
+                'MODE'          => 'edit',
             ));
         }
         

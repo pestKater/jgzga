@@ -6,3 +6,4 @@ config.php
 cache/*
 images/avatars/*
 nbproject/
+images/gallery/*

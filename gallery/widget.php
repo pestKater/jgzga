@@ -57,7 +57,7 @@ if($height > $width) {
 
     <div class="widget-randompicture">
         <div>
-            <a href="../gallery.php?file=<?php echo echo $pictureId; ?>">
+            <a href="../gallery.php?file=<?php echo $pictureId; ?>">
                 <img class="<?php echo $class; ?>" src="../images/gallery/<?php echo $pictureId; ?>.jpg">
             </a>
         </div>

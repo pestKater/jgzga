@@ -126,7 +126,7 @@
             
             $template->assign_vars(array(
                 'TITLE'         => $title,
-                'DESCRIPTION'   => str_replace($descr, '<br>', $descr),
+                'DESCRIPTION'   => str_replace('\n', '<br>', $descr),
                 'DATE'          => $date,
                 'USER'          => $username,
                 'USERID'        => $author,

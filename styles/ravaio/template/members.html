@@ -10,26 +10,34 @@
 
 <div class="background-main">
     <div class="chunk">
-        <!-- BEGIN unit -->
-        <div class="unit">
-            <h3><img src="./../download/file.php?avatar={unit.LOGO}"><br>
-                {unit.NAME}</h3>
-            <p>{unit.DESCRIPTION}</p>
-            
-            <div class="members">
-            
-            <!-- BEGIN unit.member -->
-            <div class="unitmember">
-                <img src="images/ranks/{unit.member.RANKIMAGE}">
-                <p><a href="memberlist.php?mode=viewprofile&u={unit.member.USERID}">{unit.member.USERNAME}</a><br>
-                <span class="rank">{unit.member.RANK}</span></p>
-            </div>
-            
-            <!-- END unit.member -->
-            <div class="clear"></div>
+        <div class="panel">
+            <div class="inner">      
+                <div id="message-box">
+                    <!-- BEGIN unit -->
+                    <div class="unit">
+                        <h3><img src="./../download/file.php?avatar={unit.LOGO}"><br>
+                            {unit.NAME}</h3>
+                        <details>
+                            <summary>Beschreibung</summary>
+                            <p>{unit.DESCRIPTION}</p>
+                        </details>
+                        <div class="members">
+
+                        <!-- BEGIN unit.member -->
+                        <div class="unitmember">
+                            <img src="images/ranks/{unit.member.RANKIMAGE}">
+                            <p><a href="memberlist.php?mode=viewprofile&u={unit.member.USERID}">{unit.member.USERNAME}</a><br>
+                            <span class="rank">{unit.member.RANK}</span></p>
+                        </div>
+
+                        <!-- END unit.member -->
+                        <div class="clear"></div>
+                        </div>
+                    </div>
+                    <!-- END unit -->
+                </div>
             </div>
         </div>
-        <!-- END unit -->
     </div>
 </div>
 

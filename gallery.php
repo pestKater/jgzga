@@ -202,7 +202,7 @@
             $template->assign_vars(array(
                 'PICTUREID'     => $picture,
                 'NAME'          => $name,
-                'DESCRIPTION'   => $descr,
+                'DESCRIPTION'   => nl2br($descr),
                 'DATE'          => $date,
                 'AUTHOR'        => $author,
                 'MODE'          => 'edit',

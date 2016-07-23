@@ -144,8 +144,8 @@ function getModstringInfos($modstringId) {
 */
 function sentServerInfos($serverId, $name, $port, $server_dir, $exe, $gametype, $basic_cfg, $server_cfg, $admin, $params) {
 	$pdo = new PDO('mysql:host=localhost;dbname=website', 'root', '');
-	$sql = 'UPDATE tbl_server SET name = ' . $name . ' , port = ' . $port . ' , server_dir = ' . $server_dir . ' , exe = ' . $exe . ' , gametype = ' . $gametype . ' , basic_cfg = ' . $basic_cfg . ' , server_cfg = ' . $server_cfg . ' , admin = ' . $admin . ' , params = ' . $params . ' WHERE id = ' . $serverId;
-	
+	$sql = 'UPDATE tbl_server SET name = \'' . $name . '\' , port = \'' . $port . '\' , server_dir = \'' . $server_dir . '\' , exe = \'' . $exe . '\' , gametype = \'' . $gametype . '\' , basic_cfg = \'' . $basic_cfg . '\' , server_cfg = \'' . $server_cfg . '\' , admin = \'' . $admin . '\' , params = \'' . $params . '\' WHERE id = ' . $serverId;
+
 	$pdo->query($sql);
 }
 
@@ -154,7 +154,7 @@ function sentServerInfos($serverId, $name, $port, $server_dir, $exe, $gametype, 
 */
 function sentModstringInfos($modstringId, $gametype, $name, $moddir, $moddir_serv, $moddir_cust, $modstring, $modstring_serv, $modstring_cust) {
 	$pdo = new PDO('mysql:host=localhost;dbname=website', 'root', '');
-	$sql = 'UPDATE tbl_modstrings SET gametype = ' . $gametype . ' , name = ' . $name . ' , moddir = ' . $moddir . ' , moddir_serv = ' . $moddir_serv . ' , moddir_cust = ' . $moddir_cust . ' , modstring = ' . $modstring . ' , modstring_serv = ' . $modstring_serv . ' , modstring_cust = ' . $modstring_cust . ' WHERE id = ' . $modstringId;
+	$sql = 'UPDATE tbl_modstrings SET gametype = \'' . $gametype . '\' , name = \'' . $name . '\' , moddir = \'' . $moddir . '\' , moddir_serv = \'' . $moddir_serv . '\' , moddir_cust = \'' . $moddir_cust . '\' , modstring = \'' . $modstring . '\' , modstring_serv = \'' . $modstring_serv . '\' , modstring_cust = \'' . $modstring_cust . '\' WHERE id = ' . $modstringId;
 	
 	$pdo->query($sql);
 }

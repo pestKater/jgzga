@@ -2,6 +2,11 @@
 	Ravaio Theme Stylesheet Made by Gramziu
 */
 
+.customsite p{
+	font-size: 1.2em;
+	line-height: 1.7;
+}
+
 .dropdown-mega {
 	background-color:#222222;
 	border:1px solid white;

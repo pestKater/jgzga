@@ -21,6 +21,7 @@
 }
 .unit details summary {
     cursor: pointer;
+    text-align: center;
 }
 .unit details summary:focus {
     outline: none;
@@ -30,12 +31,12 @@
     text-align: justify;
 }
 .members {
-    width:800px;
+    width:470px;
     margin:auto;
 }
 .unitmember {
-    width:380px;
-    margin:10px;
+    width:230px;
+    margin:2px;
     float:left;
     padding:10px;
     transition: all 0.5s;

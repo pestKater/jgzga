@@ -22,6 +22,9 @@
 .unit details summary {
     cursor: pointer;
 }
+.unit details summary:focus {
+    outline: none;
+}
 .unit p {
     font-size:1.2em;
     text-align: justify;

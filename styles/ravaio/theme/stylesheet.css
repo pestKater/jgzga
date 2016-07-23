@@ -19,17 +19,20 @@
 .unit h3 img {
     margin-bottom:20px;
 }
+.unit summary {
+    text-align: center;
+}
 .unit p {
     font-size:1.2em;
     text-align: justify;
 }
 .members {
-    width:800px;
+    width:470px;
     margin:auto;
 }
 .unitmember {
-    width:380px;
-    margin:10px;
+    width:230px;
+    margin:2px;
     float:left;
     padding:10px;
     transition: all 0.5s;

@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23.07.2016, 11:35:36
+    Author     : pestk
+*/
+
+body {
+    /*background-color:#222222;*/
+    font-family: "Open Sans";
+    color:#e8e8e8;
+}
+
+.widget-randompicture {
+    width:194px;
+    min-height:110px;
+    padding-top:20px;
+    padding-bottom: 20px;
+    margin:0;
+}
+
+.widget-randompicture div {
+    width:100%;
+    text-align:center;
+    margin-top:0;
+    background-color:#222;
+}
+.widget-randompicture div img {
+    transition: all 0.5s;
+    border: 2px solid #222;
+}
+.widget-randompicture div:hover img {
+    border: 2px solid #256F26;
+}
+
+.landscape {
+    width:98%;
+}
+
+.portrait {
+    height:200px;
+    max-width: 100%;
+}

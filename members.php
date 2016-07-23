@@ -95,4 +95,5 @@
     // End Controller
     make_jumpbox(append_sid("{$phpbb_root_path}viewforum.$phpEx"));
     page_footer();
+    
 ?>

@@ -9,6 +9,37 @@
     $auth->acl($user->data);
     $user->setup();
     
+    $canEditPictures = false;
+    $canAddPictures = false;
+    
+    /**
+     * Kann editieren?
+     * Kann hinzufügen?
+     */
+    $userId = $user->data['user_id'];
+    $groups = array(
+        8,
+    );
+    $sql = "SELECT count(*) AS count FROM " . USER_GROUP_TABLE . " WHERE user_id = " . $userId . " AND " . $db->sql_in_set('group_id', $groups);
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    if($row['count'] > 0) {
+        $canEditPictures = true;
+    }
+    
+    $sql = "SELECT count(*) AS count FROM " . USER_GROUP_TABLE . " WHERE user_id = " . $userId . " AND " . $db->sql_in_set('group_id', $groups);
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    if($row['count'] > 0) {
+        $canAddPictures = true;
+    }
+    
+    
+    
     /**
      * Übersicht der Bilder
      */
@@ -47,11 +78,16 @@
             // Inits Languagefile
             page_header('Neues Bild');
             
+            if($canAddPictures) {
+                $canEditPictures = true;
+            }
+            
             $template->assign_vars(array(
                 'NEWPICTURE'    => true,
                 'DATE'          => date("Y-m-d"),
                 'AUTHOR'        => $user->data['user_id'],
                 'MODE'          => 'new',
+                'CANEDIT'        => $canEditPictures,
             ));
         } elseif($mode == 'edit') {
             $picture = request_var('id', '1');
@@ -67,7 +103,11 @@
                 $date   = $row['date'];
                 $author = $row['author'];
             }
-            $db->sql_freeresult($data);            
+            $db->sql_freeresult($data);   
+            
+            if($userId == $author) {
+                $canEditPictures = true;
+            }
             
             page_header('Bild bearbeiten: '.$name);
             
@@ -78,6 +118,7 @@
                 'DATE'          => $date,
                 'AUTHOR'        => $author,
                 'MODE'          => 'edit',
+                'CANEDIT'       => $canEditPictures,
             ));
         }
         
@@ -93,4 +134,7 @@
     make_jumpbox(append_sid("{$phpbb_root_path}viewforum.$phpEx"));
     page_footer();
 ?>
+
+
+
 

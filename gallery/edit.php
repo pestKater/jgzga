@@ -15,22 +15,19 @@ if(!$request->is_set_post('submit')) {
     exit;
 }
 
+$sql_arr = array(
+        'name'      =>  $db->sql_escape($request->variable('title', '')),
+        'date'      =>  $db->sql_escape($request->variable('date', date("Y-m-d"))),
+        'descr'     =>  $db->sql_escape($request->variable('description', '')),
+        'author'    =>  $db->sql_escape($request->variable('author', ''))
+    );
+
 if($request->variable('mode', '') == 'new') {
-    var_dump("neues Bild");
-    die;
     /*******************************************************************************
      * Formhandling
      ******************************************************************************/
 
     // Write Data in DB
-    $sql_arr = array(
-        'name'      => $request->variable('title', ''),
-        'date'      => $request->variable('date', date("Y-m-d")),
-        'descr'     => $request->variable('description', ''),
-        'author'    => $request->variable('author', '')
-
-    );
-
     $sql = 'INSERT INTO phpbb_gallery ' . $db->sql_build_array('INSERT', $sql_arr);
     $db->sql_query($sql);
 
@@ -68,15 +65,11 @@ if($request->variable('mode', '') == 'new') {
 }
 
 if($request->variable('mode', '') == 'edit') {
-    $sql_arr = array(
-        'name'      => $request->variable('title', ''),
-        'date'      => $request->variable('date', date("Y-m-d")),
-        'descr'     => $request->variable('description', ''),
-        'author'    => $request->variable('author', '')
-    );
-
-    $sql = 'UPDATE phpbb_gallery  SET ' . $db->sql_build_array('UPDATE', $sql_arr) . ' WHERE id=' . $request->variable('picid', '');
-    var_dump($sql);
-    die;
+    $pictureId = $request->variable('picid', '');
+    
+    $sql = 'UPDATE phpbb_gallery  SET ' . $db->sql_build_array('UPDATE', $sql_arr) . ' WHERE id=' . $pictureId;
     $db->sql_query($sql);
 }
+
+header('Location: ../gallery.php?file=' . $pictureId);
+?>

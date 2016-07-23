@@ -17,8 +17,9 @@
 <div class="background-main">
     <div class="chunk">
         <div class="panel">
-            <div class="inner">                
+            <div class="inner">      
                 <div id="message-box">
+                    <!-- IF CANEDIT -->
                     <form enctype="multipart/form-data" method="POST" action="gallery/edit.php">
                         <!-- IF not NEWPICTURE -->
                             <img src="images/gallery/{PICTUREID}.jpg">
@@ -34,6 +35,9 @@
                         <input type="hidden" name="mode" id="mode" value="{MODE}">
                         <input type="submit" name="submit" value="Absenden" class="button">
                     </form>
+                    <!-- ELSE -->
+                        <p>Du hast keine Berechtigung diese Seite anzusehen.</p>
+                    <!-- ENDIF -->
                 </div>
             </div>
         </div>        

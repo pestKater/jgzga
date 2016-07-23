@@ -11,6 +11,7 @@
                 <!-- ENDIF -->
             </h2>
         </div>
+        
     </div>
 </div>
 
@@ -22,8 +23,10 @@
                     <!-- IF CANEDIT -->
                     <form enctype="multipart/form-data" method="POST" action="gallery/edit.php">
                         <!-- IF not NEWPICTURE -->
-                            <img src="images/gallery/{PICTUREID}.jpg">
-                            <input type="hidden" name="picid" id="picid" value="{PICTUREID}">
+                            <div class="picture">
+                                <img src="images/gallery/{PICTUREID}.jpg">
+                                <input type="hidden" name="picid" id="picid" value="{PICTUREID}">
+                            </div>
                         <!-- ENDIF -->
                         <input placeholder="Titel" class="input" type="text" name="title" id="title" size="45" tabindex="2" value="{NAME}">
                         <textarea class="input" name="description" id="description" rows="15" cols="76" tabindex="4" placeholder="Beschreibung">{DESCRIPTION}</textarea> 

@@ -50,6 +50,7 @@ if($request->variable('mode', '') == 'new') {
 
     // Neuen Dateipfad definieren
     $new = $_SERVER['DOCUMENT_ROOT'] . "/jgzga/images/gallery/" . $pictureId . '.jpg'; // AUF LINUX UMSTELLEN
+    $thumb = $_SERVER['DOCUMENT_ROOT'] . "/jgzga/images/gallery/thumbnails/" . $pictureId . '.jpg'; // AUF LINUX UMSTELLEN
     // $new = '/var/www/html/forum/images/gallery' . $filename;
 
     // Bearbeiten
@@ -57,8 +58,11 @@ if($request->variable('mode', '') == 'new') {
     $im->resizeImage(1028, 500, 3);
     $im->setTransparency(false);
     $im->setFillColor('#CCCCCC');
-
     $im->saveImage($new);
+    
+    $im = new imageLib($new);
+    $im->resizeImage(200, 200, 'crop');
+    $im->saveImage($thumb);
 
     // Temporäre Datei Löschen
     unlink($tmp);

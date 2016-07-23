@@ -19,6 +19,9 @@
 .unit h3 img {
     margin-bottom:20px;
 }
+.unit details summary {
+    cursor: pointer;
+}
 .unit p {
     font-size:1.2em;
     text-align: justify;

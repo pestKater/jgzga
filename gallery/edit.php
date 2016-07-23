@@ -43,15 +43,12 @@ if($request->variable('mode', '') == 'new') {
     $file = $request->file('fileToUpload');        
 
     // Verschieben der Datei in temorären Ordner
-    $request->enable_super_globals();
-    $tmp = $_SERVER['DOCUMENT_ROOT'] . "/jgzga/tmp/" . $file['name']; // AUF LINUX ANPASSEN
-    // $tmp = '/var/www/html/forum/tmp' . $filename;
+    $tmp = '/var/www/html/forum/tmp' . $file['name'];
     move_uploaded_file($file['tmp_name'], $tmp);
 
     // Neuen Dateipfad definieren
-    $new = $_SERVER['DOCUMENT_ROOT'] . "/jgzga/images/gallery/" . $pictureId . '.jpg'; // AUF LINUX UMSTELLEN
-    $thumb = $_SERVER['DOCUMENT_ROOT'] . "/jgzga/images/gallery/thumbnails/" . $pictureId . '.jpg'; // AUF LINUX UMSTELLEN
-    // $new = '/var/www/html/forum/images/gallery' . $filename;
+    $new = '/var/www/html/forum/images/gallery/' . $pictureId . '.jpg';
+    $thumb = '/var/www/html/forum/images/gallery/thumbnails/' . $pictureId . '.jpg';
 
     // Bearbeiten
     $im = new imageLib($tmp);

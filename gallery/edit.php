@@ -43,7 +43,7 @@ if($request->variable('mode', '') == 'new') {
     $file = $request->file('fileToUpload');        
 
     // Verschieben der Datei in temorären Ordner
-    $tmp = '/var/www/html/forum/tmp' . $file['name'];
+    $tmp = '/var/www/html/forum/tmp/' . $file['name'];
     move_uploaded_file($file['tmp_name'], $tmp);
 
     // Neuen Dateipfad definieren

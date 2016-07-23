@@ -1,0 +1,65 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id="sub-header">
+    <div class="chunk">
+        <div class="sub-header-title">
+            <h2 class="titlespace">
+                Usergalerie
+            </h2>
+        </div>
+        <!-- IF CANADD -->
+            <div class="sub-header-buttons">
+                <a href="gallery.php?edit=new" class="button icon-button reply-icon" title="Bild hochladen"><span>Bild hochladen</span></a>
+            </div>
+        <!-- ENDIF -->
+    </div>
+</div>
+
+<div class="background-main">
+    <div class="chunk">
+        <div class="panel">
+            <div class="inner">      
+                <div id="message-box">
+                    <div class="gallery">
+                        <a href="./gallery.php?folder=overview">
+                            <h3>Collectionen <span><!-- IF MAXCOLL > 8 -->{MAXCOLL} Weitere warten auf dich<!-- ENDIF--></span></h3>
+                        </a>
+                        <!-- BEGIN folder -->
+                        <div class="gallery-thumb">
+                            <a href="./gallery.php?folder={folder.ID}">
+                                <!-- BEGIN folder.thumbs -->
+                                    <img class="mini-thumb" src="./images/gallery/thumbnails/{folder.thumbs.ID}.jpg">
+                                <!-- END folder.thumbs -->
+                            </a>
+                            <div class="gallery-thumb-name">
+                                <h4>{folder.NAME}</h4>
+                            </div>
+                        </div>
+                        <!-- END folder -->
+                        <div class="clear"></div>
+                    </div> 
+                </div>
+                <div id="message-box">
+                    <div class="gallery">
+                        <a href="./gallery.php?gallery=images">
+                            <h3>Bilder <span><!-- IF MAXFILE > 8 -->{MAXFILE} Weitere warten auf dich<!-- ENDIF--></span></h3>
+                        </a>
+                        <!-- BEGIN pic -->
+                        <div class="gallery-thumb">
+                            <a href="./gallery.php?file={pic.PICTURE}"><img src="./images/gallery/thumbnails/{pic.ID}.jpg"></a>
+                            <div class="gallery-thumb-name">
+                                <h4>{pic.NAME}</h4>
+                            </div>
+                        </div>
+                        <!-- END pic -->
+                        <div class="clear"></div>
+                    </div> 
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+
+<!-- INCLUDE jumpbox.html -->
+<!-- INCLUDE overall_footer.html -->

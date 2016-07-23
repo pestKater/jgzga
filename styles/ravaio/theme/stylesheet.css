@@ -147,6 +147,21 @@
     text-align: right;
 }
 
+.gallery-thumb .mini-thumb {
+    height:33%;
+    width:33%;
+    float:left;
+}
+
+.gallery h3 {
+    font-size:2em;
+    margin-left:10px;
+}
+.gallery h3 span{
+    font-size:0.6em;
+    color:#b2b2b2;
+}
+
 
 *,
 *:before,

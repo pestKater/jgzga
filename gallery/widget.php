@@ -33,7 +33,7 @@ if(strlen($pictureName) >= 20) {
     $pictureName = substr($pictureName, 0, 15) . '..';
 }
 
-$path = 'C:\xampp\htdocs\jgzga\images\gallery\\';
+$path = '/var/www/html/forum/images/gallery/';
 
 $im = new imageLib($path . $pictureId . '.jpg');
 $height = $im->getOriginalHeight();

@@ -3,10 +3,10 @@
  * Includes
  ******************************************************************************/
 define('IN_PHPBB', true);
-$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../';
+$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../../';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
-include('../common.php');
-require_once('php_image_magician.php');
+include($phpbb_root_path. 'common.' . $phpEx);
+require_once('../php_image_magician.php');
 
 /*******************************************************************************
  * Errorhandling
@@ -72,5 +72,5 @@ if($request->variable('mode', '') == 'edit') {
     $db->sql_query($sql);
 }
 
-header('Location: ../gallery.php?file=' . $pictureId);
+header('Location: ' . $phpbb_root_path. 'gallery.' . $phpEx . '?view=file&id=' . $pictureId);
 ?>

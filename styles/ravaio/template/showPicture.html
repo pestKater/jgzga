@@ -9,7 +9,10 @@
         </div>
         <!-- IF CANADD -->
             <div class="sub-header-buttons">
-                <a href="gallery.php?edit=new" class="button icon-button reply-icon" title="Bild hochladen"><span>Bild hochladen</span></a>
+                <!-- IF CANEDIT -->
+                <a href="gallery.php?edit=image&id={PICTURE}" class="button icon-button reply-icon" title="Bild hochladen"><span>Editieren</span></a>
+                <!-- ENDIF -->
+                <a href="gallery.php?edit=image&id=new" class="button icon-button reply-icon" title="Bild hochladen"><span>Bild hochladen</span></a>
             </div>
         <!-- ENDIF -->
     </div>
@@ -38,12 +41,6 @@
                                     <p>von: <a href="memberlist.php?mode=viewprofile&u={USERID}">{USER}</a><br>
                                     <span>gepostet am: {DATE}</span></p>
                                 </div>
-                                <!-- IF CANEDIT -->
-                                <div class="pic-edit-btn">
-                                    <a href="gallery.php?edit=edit&id={PICTURE}" class="button icon-button reply-icon" title="Bild hochladen"><span>Editieren</span></a>
-                                </div>
-                                <!-- ENDIF -->
-                                <div class="clear"></div>
                             </div>
                         </div>
                     <!-- ELSE -->

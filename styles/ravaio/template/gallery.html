@@ -1,0 +1,37 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- INCLUDE gallery/galleryHeader.html -->
+
+<div class="background-main">
+    <div class="chunk">
+        <div class="panel">
+            <div class="inner">      
+                <!-- IF SITE == 'overview' -->
+                    <!-- INCLUDE gallery/overview.html -->
+                <!-- ENDIF-->
+                <!-- IF SITE == 'listImages' -->
+                    <!-- INCLUDE gallery/listImages.html -->
+                <!-- ENDIF-->
+                <!-- IF SITE == 'listFolders' -->
+                    <!-- INCLUDE gallery/listFolders.html -->
+                <!-- ENDIF-->
+                <!-- IF SITE == 'viewPicture' -->
+                    <!-- INCLUDE gallery/viewImage.html -->
+                <!-- ENDIF-->
+                <!-- IF SITE == 'viewFolder' -->
+                    <!-- INCLUDE gallery/listImages.html -->
+                <!-- ENDIF-->
+                <!-- IF SITE == 'editImage' -->
+                    <!-- INCLUDE gallery/editImage.html -->
+                <!-- ENDIF-->
+                <!-- IF SITE == 'editFolder' -->
+                    <!-- INCLUDE gallery/editFolder.html -->
+                <!-- ENDIF-->
+            </div>
+        </div>        
+    </div>
+</div>
+
+
+<!-- INCLUDE jumpbox.html -->
+<!-- INCLUDE overall_footer.html -->

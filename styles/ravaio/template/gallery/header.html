@@ -1,0 +1,24 @@
+<div id="sub-header">
+    <div class="chunk">
+        <div class="sub-header-title">
+            <h2 class="titlespace">
+                {PAGETITLE}
+            </h2>
+        </div>
+        
+        <!-- IF CAN_ADD -->
+            <div class="sub-header-buttons">
+                <!-- IF CAN_EDIT -->
+                    <!-- IF SITE == 'viewPicture' -->
+                        <a href="gallery.php?edit=image&id={PICTURE}" class="button-flat" title="Bild editieren"><span>editieren</span></a>
+                    <!-- ENDIF -->
+                    <!-- IF SITE == 'viewFolder' -->
+                        <a href="gallery.php?edit=folder&id={FOLDER}" class="button-flat" title="Collection editieren"><span>editieren</span></a>
+                    <!-- ENDIF -->
+                <!-- ENDIF -->
+                <a href="gallery.php?edit=image&id=new" class="button icon-button reply-icon" title="Bild hochladen"><span>Bild hochladen</span></a>
+                <a href="gallery.php?edit=folder&id=new" class="button icon-button reply-icon" title="Collection anlegen"><span>Collection anlegen</span></a>
+            </div>
+        <!-- ENDIF -->
+    </div>
+</div>

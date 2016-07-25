@@ -1,0 +1,36 @@
+<div id="message-box">
+    <div class="gallery">
+        <a href="./gallery.php?list=folder">
+            <h3>Collectionen <span><!-- IF AMOUNT_FOLDERS > 8 -->{AMOUNT_FOLDERS} Weitere warten auf dich<!-- ENDIF--></span></h3>
+        </a>
+        <!-- BEGIN folder -->
+        <a href="./gallery.php?view=folder&id={folder.ID}">
+            <div class="gallery-thumb">
+                <!-- BEGIN folder.thumb -->
+                    <img class="mini-thumb" src="./images/gallery/thumbnails/{folder.thumb.ID}.jpg">
+                <!-- END folder.thumb -->
+                <div class="gallery-thumb-name">
+                <h4>{folder.NAME}</h4>
+                </div>
+            </div>
+        </a>
+        <!-- END folder -->
+        <div class="clear"></div>
+    </div> 
+</div>
+<div id="message-box">
+    <div class="gallery">
+        <a href="./gallery.php?list=image">
+            <h3>Bilder <span><!-- IF AMOUNT_IMAGES > 8 -->{AMOUNT_IMAGES} Weitere warten auf dich<!-- ENDIF--></span></h3>
+        </a>
+        <!-- BEGIN pic -->
+        <div class="gallery-thumb">
+            <a href="./gallery.php?view=image&id={pic.ID}"><img src="./images/gallery/thumbnails/{pic.ID}.jpg"></a>
+            <div class="gallery-thumb-name">
+                <h4>{pic.NAME}</h4>
+            </div>
+        </div>
+        <!-- END pic -->
+        <div class="clear"></div>
+    </div> 
+</div>

@@ -52,18 +52,20 @@ if($image != false) {
     // GET COMMENTS
     $comments = getComments($id);
     
-    foreach($comments as $comment) {
-        
-        $usernameComment = getUserData($comment['user']);
-        $text = str_replace('\n', '<br>', $comment['text']);
-        
-        $template->assign_block_vars('comment', array(
-            'USERID'    => $comment['user'],
-            'USERNAME'  => $usernameComment['username'],
-            'DATE'      => date("d.m.Y", strtotime($comment['date'])),
-            'COMMENT'   => $text,
-            'AVATAR'    => $usernameComment['user_avatar'],
-        ));
+    if(!is_null($comments)) {
+        foreach($comments as $comment) {
+
+            $usernameComment = getUserData($comment['user']);
+            $text = str_replace('\n', '<br>', $comment['text']);
+
+            $template->assign_block_vars('comment', array(
+                'USERID'    => $comment['user'],
+                'USERNAME'  => $usernameComment['username'],
+                'DATE'      => date("d.m.Y", strtotime($comment['date'])),
+                'COMMENT'   => $text,
+                'AVATAR'    => $usernameComment['user_avatar'],
+            ));
+        }
     }
     
 } else {       

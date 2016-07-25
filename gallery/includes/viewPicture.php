@@ -18,6 +18,14 @@ if($image != false) {
         $userrank = '';
     }
     
+    // Pagination
+    $latestPicture      = getLastPicture();
+    $firstPicture       = getFirstPicture();
+    $neighbors          = getNeighbors($id);
+    $lastPicture        = $neighbors[0];
+    $nextPicture        = $neighbors[1];
+    
+    
     $folder = getFolderData($image['in_group']);
     
     $template->assign_vars(array(
@@ -32,7 +40,32 @@ if($image != false) {
         'AVAILIBLE'     => true,
         'PICTURE'       => $id,
         'RANK'          => $userrank,
+        'PAGINATION'    => 'view=image',
+        'PREVIOUS'      => $lastPicture,
+        'NEXT'          => $nextPicture,
+        'MAX_PAGES'     => $latestPicture,
+        'CUR_PAGE'      => $id,
+        'FIRST_PAGE'    => $firstPicture,
+        'VIEWERS_ID'    => $userId,
     ));
+    
+    // GET COMMENTS
+    $comments = getComments($id);
+    
+    foreach($comments as $comment) {
+        
+        $usernameComment = getUserData($comment['user']);
+        $text = str_replace('\n', '<br>', $comment['text']);
+        
+        $template->assign_block_vars('comment', array(
+            'USERID'    => $comment['user'],
+            'USERNAME'  => $usernameComment['username'],
+            'DATE'      => date("d.m.Y", strtotime($comment['date'])),
+            'COMMENT'   => $text,
+            'AVATAR'    => $usernameComment['user_avatar'],
+        ));
+    }
+    
 } else {       
     $pageTitle = 'Fehler!';
 

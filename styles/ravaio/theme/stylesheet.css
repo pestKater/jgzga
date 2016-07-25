@@ -204,6 +204,46 @@
     margin-bottom: 20px;
     font-size:1.2em;
 }
+.gallery-comments {
+    width:100%;
+    margin-top:60px;
+}
+.gallery-comments summary {
+    font-size:1.8em;
+    margin-bottom:40px;
+}
+.gallery-comments summary:focus {
+    outline: none;
+}
+.gallery-comments #comment_textarea {
+    border:1px solid #151515;
+    border-radius: 10px;
+    padding:20px;
+}
+.gallery-comments .comment {
+    width:80%;
+    margin:auto;
+    margin-top:20px;
+    padding:10px;
+}
+.gallery-comments .comment .comment-avatar {
+    float:left;
+    width:20%
+}
+.gallery-comments .comment .comment-content {
+    float:left;
+    min-height: 120px;
+    background-color:#151515;
+    padding:20px;
+    width:80%;
+}
+
+.gallery-comments .comment .comment-content p {
+    font-size:1.3em;
+}
+.gallery-comments .comment .comment-content p span {
+   font-size: 0.8em;
+}
 
 *,
 *:before,

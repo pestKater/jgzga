@@ -1,40 +1,113 @@
 <div id="message-box">
     <!-- IF AVAILIBLE -->
-        <div class="picture"><img src="images/gallery/{PICTURE}.jpg"></div>
-        <div class="pic-infos">
-            <div class="pic-desc"><p>{DESCRIPTION}</p></div>
-            <div class="pic-poster">
-                <div class="avatar-container">
-                    <a href="memberlist.php?mode=viewprofile&u={USERID}" class="avatar">
-                        <!-- IF not AVATAR == '' -->
-                        <img class="avatar" src="./download/file.php?avatar={AVATAR}">
-                        <!-- ELSE-->
-                        <span class="avatar-none">{USER}</span>
+    <div class="gal-pagi">
+        <!-- IF PREVIOUS >= FIRSTPAGE -->
+        <div class="pagi-prev">
+            <a href="gallery.php?{PAGINATION}&id={PREVIOUS}" class="button-flat" title="Letzte Seite"><span>&#8676; Vorheriges Bild</span></a>
+        </div>
+        <!-- ENDIF -->
+        <!-- IF NEXT <= MAX_PAGES && NEXT != 0 -->
+        <div class="pagi-next">
+            <a href="gallery.php?{PAGINATION}&id={NEXT}" class="button-flat" title="Nächste Seite"><span>Nächstes Bild &#8677;</span></a>
+        </div>
+        <!-- ENDIF -->
+        <div class="clear"></div>
+    </div>
+    <div class="picture"><img src="images/gallery/{PICTURE}.jpg"></div>
+    <div class="pic-infos">
+        <div class="pic-desc"><p>{DESCRIPTION}</p></div>
+        <div class="pic-poster">
+            <div class="avatar-container">
+                <a href="memberlist.php?mode=viewprofile&u={USERID}" class="avatar">
+                    <!-- IF not AVATAR == '' -->
+                    <img class="avatar" src="./download/file.php?avatar={AVATAR}">
+                    <!-- ELSE-->
+                    <span class="avatar-none">{USER}</span>
+                    <!-- ENDIF -->
+                </a>
+            </div>
+            <div class="userinfo">
+
+                <ul class="pic-info-list">
+                    <li class="username"><a href="memberlist.php?mode=viewprofile&u={USERID}">{USER}</a></li>
+                    <!-- IF not RANK == '' -->
+                        <li class="userrank">{RANK}</li>
+                    <!-- ENDIF -->
+                    <li><span>Datum:</span> {DATE}</li>
+
+                    <li><span>Collection:</span> 
+                        <!-- IF FOLDER_ID == 0 -->
+                            Keine
+                        <!-- ELSE -->
+                            <a href="gallery.php?view=folder&id={FOLDER_ID}">{FOLDERNAME}</a>
                         <!-- ENDIF -->
-                    </a>
-                </div>
-                <div class="userinfo">
-                    
-                    <ul class="pic-info-list">
-                        <li class="username"><a href="memberlist.php?mode=viewprofile&u={USERID}">{USER}</a></li>
-                        <!-- IF not RANK == '' -->
-                            <li class="userrank">{RANK}</li>
-                        <!-- ENDIF -->
-                        <li><span>Datum:</span> {DATE}</li>
-                        
-                        <li><span>Collection:</span> 
-                            <!-- IF FOLDER_ID == 0 -->
-                                Keine
-                            <!-- ELSE -->
-                                <a href="gallery.php?view=folder&id={FOLDER_ID}">{FOLDERNAME}</a>
-                            <!-- ENDIF -->
-                        </li>                        
-                    </ul>
-                </div>
+                    </li>                        
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="gal-pagi">
+        <!-- IF PREVIOUS >= FIRSTPAGE -->
+        <div class="pagi-prev">
+            <a href="gallery.php?{PAGINATION}&id={PREVIOUS}" class="button-flat" title="Letzte Seite"><span>&#8676; Vorheriges Bild</span></a>
+        </div>
+        <!-- ENDIF -->
+        <!-- IF NEXT <= MAX_PAGES && NEXT != 0 -->
+        <div class="pagi-next">
+            <a href="gallery.php?{PAGINATION}&id={NEXT}" class="button-flat" title="Nächste Seite"><span>Nächstes Bild &#8677;</span></a>
+        </div>
+        <!-- ENDIF -->
+        <div class="clear"></div>
+    </div>
+    <div class="gallery-comments">
+        <!-- IF S_USER_LOGGED_IN -->
+        <details>
+            <summary>Hinterlasse einen Kommentar</summary>
+            <form method="POST" class="gallery-form" id="gallery-form" accept-charset="UTF-8" action="gallery/handlers/addComment.php">
+            <textarea class="input" name="comment" id="comment_textarea" rows="5" cols="76" tabindex="4" placeholder="Kommentar"></textarea> 
+            <input type="hidden" name="author" id="author" value="{VIEWERS_ID}">
+            <input type="hidden" name="picture" id="picture" value="{PICTURE}">
+            <input type="submit" name="submit" value="Absenden" class="button">
+        </form>
+        <script>
+        $('form').submit( function(ev) {
+            var textarea = $('form textarea');
+            var text = textarea.val();
+
+            text = text.replace(/ä/g,"&auml;");
+            text = text.replace(/ö/g, '&ouml;');
+            text = text.replace(/ü/g, '&uuml;');
+            text = text.replace(/Ä/g, '&Auml;');
+            text = text.replace(/Ö/g, '&Ouml;');
+            text = text.replace(/Ü/g, '&Uuml;');
+            text = text.replace(/ß/g, '&szlig;');
+
+            textarea.val(text);
+        });
+        </script>
+        </details>
+        <!-- ENDIF -->
+        <!-- BEGIN comment -->
+        <div class="comment">
+            <div class="comment-avatar">
+                <a href="memberlist.php?mode=viewprofile&u={comment.USERID}" class="avatar">
+                    <!-- IF not comment.AVATAR == '' -->
+                    <img class="avatar" src="./download/file.php?avatar={comment.AVATAR}">
+                    <!-- ELSE-->
+                    <span class="avatar-none">{comment.USERNAME}</span>
+                    <!-- ENDIF -->
+                </a>
+            </div>
+            <div class="comment-content">
+                <p><span><a href="memberlist.php?mode=viewprofile&u={comment.USERID}">{comment.USERNAME}</a> schrieb am {comment.DATE}:</span></p>
+                <p>{comment.COMMENT}</p>
             </div>
             <div class="clear"></div>
         </div>
+        <!-- END comment -->
+    </div>
     <!-- ELSE -->
-        <p>Dieses Bild existiert nicht.</p>
+    <p>Dieses Bild existiert nicht.</p>
     <!-- ENDIF -->
 </div>

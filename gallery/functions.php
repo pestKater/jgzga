@@ -263,3 +263,61 @@ function getFolderByName($folderName) {
 function br2nl( $input ) {
     return preg_replace('/<br\s?\/?>/ius', "\n", str_replace("\n","",str_replace("\r","", htmlspecialchars_decode($input))));
 }
+
+function getLastPicture() {
+    global $db;
+    
+    $sql = 'SELECT id FROM phpbb_gallery ORDER BY id DESC LIMIT 1';
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    return intval($row['id']);
+}
+
+function getFirstPicture() {
+    global $db;
+    
+    $sql = 'SELECT id FROM phpbb_gallery ORDER BY id ASC LIMIT 1';
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    return intval($row['id']);
+}
+
+function getNeighbors($pictureId) {
+    global $db;
+    
+    $sql = 'SELECT id FROM phpbb_gallery WHERE id < ' . $pictureId . ' ORDER BY id DESC LIMIT 1';
+    $result = $db->sql_query($sql);
+    $less = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    $sql = 'SELECT id FROM phpbb_gallery WHERE id > ' . $pictureId . ' ORDER BY id ASC LIMIT 1';
+    $result = $db->sql_query($sql);
+    $greater = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    $return = array(intval($less['id']), intval($greater['id']));
+    
+    return $return;
+}
+
+function getComments($pictureId) {
+    global $db;
+    
+    $sql = 'SELECT id, user_id, post_date, content FROM phpbb_gallery_comments WHERE picture_id = ' . $pictureId . ' ORDER BY id DESC';
+    $result = $db->sql_query($sql);
+    
+    while($row = $db->sql_fetchrow($result)) {
+        $data[$row['id']]['id'] = $row['id'];
+        $data[$row['id']]['user'] = $row['user_id'];
+        $data[$row['id']]['date'] = $row['post_date'];
+        $data[$row['id']]['text'] = $row['content'];
+    }
+    
+    $db->sql_freeresult($result);
+    
+    return $data;
+}

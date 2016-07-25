@@ -255,3 +255,7 @@ function getFolderByName($folderName) {
     
     return $row['id'];
 }
+
+function br2nl( $input ) {
+    return preg_replace('/<br\s?\/?>/ius', "\n", str_replace("\n","",str_replace("\r","", htmlspecialchars_decode($input))));
+}

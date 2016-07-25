@@ -1,6 +1,6 @@
 <div id="message-box">
     <!-- IF CAN_EDIT -->
-    <form enctype="multipart/form-data" method="POST" class="gallery-form" accept-charset="UTF-8" action="gallery/handlers/editPicture.php">
+    <form enctype="multipart/form-data" method="POST" class="gallery-form" id="gallery-form" accept-charset="UTF-8" action="gallery/handlers/editPicture.php">
         <!-- IF MODE == 'edit' -->
             <div class="picture">
                 <img src="images/gallery/{PICTURE_ID}.jpg">
@@ -45,6 +45,35 @@
         <input type="hidden" name="mode" id="mode" value="{MODE}">
         <input type="submit" name="submit" value="Absenden" class="button">
     </form>
+    <script>
+        $('form').submit( function(ev) {
+            var textarea = $('form textarea');
+            var text = textarea.val();
+            
+            text = text.replace(/ä/g,"&auml;");
+            text = text.replace(/ö/g, '&ouml;');
+            text = text.replace(/ü/g, '&uuml;');
+            text = text.replace(/Ä/g, '&Auml;');
+            text = text.replace(/Ö/g, '&Ouml;');
+            text = text.replace(/Ü/g, '&Uuml;');
+            text = text.replace(/ß/g, '&szlig;');
+            
+            textarea.val(text);
+            
+            var title = $('#title');
+            var text = title.val();
+            
+            text = text.replace(/ä/g,"&auml;");
+            text = text.replace(/ö/g, '&ouml;');
+            text = text.replace(/ü/g, '&uuml;');
+            text = text.replace(/Ä/g, '&Auml;');
+            text = text.replace(/Ö/g, '&Ouml;');
+            text = text.replace(/Ü/g, '&Uuml;');
+            text = text.replace(/ß/g, '&szlig;');
+            
+            title.val(text);
+        });
+    </script>
     <!-- ELSE -->
         <p>Du hast keine Berechtigung diese Seite anzusehen.</p>
     <!-- ENDIF -->

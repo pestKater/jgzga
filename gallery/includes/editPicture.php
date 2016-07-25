@@ -36,10 +36,12 @@ if($id == 'new') {
     $picture = getPictureData($id);
     $pageTitle = 'Bild bearbeiten: ' . $picture['name'];
 
+    $descr = str_replace('\n', "\r\n" , $picture['descr']);
+    
     $template->assign_vars(array(
         'PICTURE_ID'    => $picture['id'],
         'NAME'          => $picture['name'],
-        'DESCRIPTION'   => $picture['descr'],
+        'DESCRIPTION'   => $descr,
         'DATE'          => $picture['date'],
         'AUTHOR'        => $picture['author'],
         'MODE'          => 'edit',

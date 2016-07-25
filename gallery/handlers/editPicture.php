@@ -17,9 +17,9 @@ if(!$request->is_set_post('submit')) {
 }
 
 $sql_arr = array(
-        'name'      =>  $db->sql_escape($request->variable('title', '')),
+        'name'      =>  html_entity_decode($db->sql_escape($request->variable('title', ''))),
         'date'      =>  $db->sql_escape($request->variable('date', date("Y-m-d"))),
-        'descr'     =>  $db->sql_escape($request->variable('description', '')),
+        'descr'     =>  html_entity_decode($db->sql_escape($request->variable('description', ''))),
         'author'    =>  $db->sql_escape($request->variable('author', '')),
         'in_group'  =>  $request->variable('folder', ''),
     );

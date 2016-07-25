@@ -255,27 +255,3 @@ function getFolderByName($folderName) {
     
     return $row['id'];
 }
-
-function charset_decode_utf_8 ($string) {
-    /* Only do the slow convert if there are 8-bit characters */
-    /* avoid using 0xA0 (\240) in ereg ranges. RH73 does not like that */
-    if (!preg_match("/[\200-\237]/", $string)
-     && !preg_match("/[\241-\377]/", $string)
-    ) {
-        return $string;
-    }
-
-    // decode three byte unicode characters
-    $string = preg_replace("/([\340-\357])([\200-\277])([\200-\277])/e",
-        "'&#'.((ord('\\1')-224)*4096 + (ord('\\2')-128)*64 + (ord('\\3')-128)).';'",
-        $string
-    );
-
-    // decode two byte unicode characters
-    $string = preg_replace("/([\300-\337])([\200-\277])/e",
-        "'&#'.((ord('\\1')-192)*64+(ord('\\2')-128)).';'",
-        $string
-    );
-
-    return $string;
-}

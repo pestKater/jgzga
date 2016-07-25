@@ -12,7 +12,11 @@ require_once('../functions.php');
 /*******************************************************************************
  * Errorhandling
  ******************************************************************************/
-if(!$request->is_set_post('submit')) {
+if($request->is_set_post('submit')) {
+    // do nothing
+} elseif($request->is_set_post('delete')) {
+    // do nothing
+} else {
     exit;
 }
 
@@ -40,9 +44,22 @@ if($request->variable('mode', '') == 'new') {
 
 if($request->variable('mode', '') == 'edit') {
     $folderId = $request->variable('folderid', '');
-    
-    $sql = 'UPDATE phpbb_gallery_folders  SET ' . $db->sql_build_array('UPDATE', $sql_arr) . ' WHERE id=' . $folderId;
-    $db->sql_query($sql);
+    if($request->is_set_post('submit')) {
+        $sql = 'UPDATE phpbb_gallery_folders  SET ' . $db->sql_build_array('UPDATE', $sql_arr) . ' WHERE id =' . $folderId;
+        $db->sql_query($sql);    
+    } elseif($request->is_set_post('delete')) {
+        $sql = 'DELETE FROM phpbb_gallery_folders WHERE id= ' . $folderId;
+        $db->sql_query($sql);
+
+        $sql_arr = array(
+            'in_group' => 0,
+        );
+        $sql = 'UPDATE phpbb_gallery  SET ' . $db->sql_build_array('UPDATE', $sql_arr) . ' WHERE in_group =' . $folderId;
+        $db->sql_query($sql);
+        
+        header('Location: ' . $phpbb_root_path. 'gallery.' . $phpEx . '?list=folder');
+        exit;
+    }
 }
 
 header('Location: ' . $phpbb_root_path. 'gallery.' . $phpEx . '?view=folder&id=' . $folderId);

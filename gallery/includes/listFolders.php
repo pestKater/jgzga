@@ -18,11 +18,13 @@ foreach($folders as $folder) {
     // Thumbnails holen
     $thumbnails = getAllImages($folder['id'], 9);
     
-    // Daten ans Template übergeben
-    foreach($thumbnails as $thumb) {
-        $template->assign_block_vars('list.thumb', array(
-            'ID'    => $thumb['id'],
-        ));
+    if(!is_null($thumbnails)) {
+        // Daten ans Template übergeben
+        foreach($thumbnails as $thumb) {
+            $template->assign_block_vars('list.thumb', array(
+                'ID'    => $thumb['id'],
+            ));
+        }
     }
 }
 

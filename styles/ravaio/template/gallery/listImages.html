@@ -14,8 +14,8 @@
     </div>
     <div class="gallery">
         <!-- BEGIN list -->
-        <div class="gallery-thumb">
-            <a href="./gallery.php?view={CONTEXT}&id={list.ID}">
+        <a href="./gallery.php?view={CONTEXT}&id={list.ID}">
+            <div class="gallery-thumb">
                 <!-- IF PAGETITLE != 'Alle Collections' --> 
                     <img src="./images/gallery/thumbnails/{list.ID}.jpg">
                 <!-- ELSE -->
@@ -23,11 +23,11 @@
                         <img class="mini-thumb" src="./images/gallery/thumbnails/{list.thumb.ID}.jpg">
                     <!-- END folder.thumb -->
                 <!-- ENDIF -->
-            </a>
-            <div class="gallery-thumb-name">
-                <h4>{list.NAME}</h4>
-            </div>
-        </div>
+                <div class="gallery-thumb-name">
+                    <h4>{list.NAME}</h4>
+                </div>
+            </div>  
+        </a>
         <!-- END list -->
         <div class="clear"></div>
     </div> 

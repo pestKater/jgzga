@@ -1,58 +1,47 @@
 <?php
+$site           = 'editImage';
+$breadcrumpName = 'Alle Bilder';
+$breadcrumpLink = append_sid("{$phpbb_root_path}gallery.$phpEx" . '?list=image&offset=0');
+$folders = array(
+    0 => array(
+        'id'            => 0,
+        'name'    => 'Keine Collection',
+    ),
+);
+$allFolders = getAllFolders();
 
-if($id == 'new') {
-    // Inits Languagefile
-    page_header('Neues Bild');
+foreach($allFolders as $folder) {
+    
+    $folders[$folder['id']] = $folder;
+}
 
-    if($canAddPictures) {
-        $canEditPictures = true;
-    }
-
-    $template->assign_vars(array(
-        'NEWPICTURE'    => true,
-        'DATE'          => date("Y-m-d"),
-        'AUTHOR'        => $user->data['user_id'],
-        'MODE'          => 'new',
-        'CANEDIT'        => $canEditPictures,
-    ));
-} else {
-
-    $sql = 'SELECT id, name, descr, date, author FROM phpbb_gallery WHERE id = ' . $id;
-    $data = $db->sql_query($sql);
-
-    while($row = $db->sql_fetchrow($data)) {
-
-        $picture = $row['id'];
-        $name   = $row['name'];
-        $descr  = $row['descr'];
-        $date   = $row['date'];
-        $author = $row['author'];
-    }
-    $db->sql_freeresult($data);   
-
-    if($userId == $author) {
-        $canEditPictures = true;
-    }
-
-    page_header('Bild bearbeiten: '.$name);
-
-    $template->assign_vars(array(
-        'PICTUREID'     => $picture,
-        'NAME'          => $name,
-        'DESCRIPTION'   => nl2br($descr),
-        'DATE'          => $date,
-        'AUTHOR'        => $author,
-        'MODE'          => 'edit',
-        'CANEDIT'       => $canEditPictures,
+foreach($folders as $folder) {
+    
+    $template->assign_block_vars('folders', array(
+        'ID'    => $folder['id'],
+        'NAME'  => $folder['name'],
     ));
 }
 
-$template->assign_block_vars('navlinks', array(
-    'FORUM_NAME'    => 'Galerie',
-    'U_VIEW_FORUM'  => append_sid("{$phpbb_root_path}gallery.$phpEx" . '?gallery=true&offset=0'),
-));
+if($id == 'new') {
+    $pageTitle = 'Neues Bild hochladen';
 
-// Load Template
-$template->set_filenames(array(
-    'body' => 'editpicture.html',
-));
+    $template->assign_vars(array(
+        'DATE'          => date("Y-m-d H:i:s"),
+        'AUTHOR'        => $user->data['user_id'],
+        'MODE'          => 'new',
+    ));
+    
+} else {
+    $picture = getPictureData($id);
+    $pageTitle = 'Bild bearbeiten: ' . $picture['name'];
+
+    $template->assign_vars(array(
+        'PICTURE_ID'    => $picture['id'],
+        'NAME'          => $picture['name'],
+        'DESCRIPTION'   => nl2br($picture['descr']),
+        'DATE'          => $picture['date'],
+        'AUTHOR'        => $picture['author'],
+        'MODE'          => 'edit',
+    ));
+}

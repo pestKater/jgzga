@@ -19,3 +19,10 @@ if($mode == 'overview') {
     include 'gallery/includes/listOverview.php';
 
 }
+
+$template->assign_vars(array(
+    'PREVIOUS'      => $offset-40,
+    'NEXT'          => $offset+40,
+    'MAX_PAGES'     => $maxPages,
+    'CUR_PAGE'      => $currentPage,
+));

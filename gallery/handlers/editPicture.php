@@ -7,6 +7,7 @@ $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../../';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path. 'common.' . $phpEx);
 require_once('../php_image_magician.php');
+require_once('../functions.php');
 
 /*******************************************************************************
  * Errorhandling
@@ -15,11 +16,23 @@ if(!$request->is_set_post('submit')) {
     exit;
 }
 
+
+
+$descr = $request->variable('description', '');
+
+var_dump($descr);
+die;
+
+$descr = charset_decode_utf_8($descr);
+
+
+
 $sql_arr = array(
         'name'      =>  $db->sql_escape($request->variable('title', '')),
         'date'      =>  $db->sql_escape($request->variable('date', date("Y-m-d"))),
         'descr'     =>  $db->sql_escape($request->variable('description', '')),
-        'author'    =>  $db->sql_escape($request->variable('author', ''))
+        'author'    =>  $db->sql_escape($request->variable('author', '')),
+        'in_group'  =>  $request->variable('folder', ''),
     );
 
 if($request->variable('mode', '') == 'new') {
@@ -72,5 +85,5 @@ if($request->variable('mode', '') == 'edit') {
     $db->sql_query($sql);
 }
 
-header('Location: ' . $phpbb_root_path. 'gallery.' . $phpEx . '?view=file&id=' . $pictureId);
+header('Location: ' . $phpbb_root_path. 'gallery.' . $phpEx . '?view=image&id=' . $pictureId);
 ?>

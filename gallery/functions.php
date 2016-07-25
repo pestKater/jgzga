@@ -67,3 +67,225 @@ function canUserAdd($userId) {
     return false;
 }
 
+/**
+ * Zählt die Bilder in der Datenbank. Optional kann die FolderID übergeben werden
+ * 
+ * @global type $db
+ * @param type $folderId
+ * @return type
+ */
+function countPictures($folderId = NULL) {
+    global $db;
+    $sql = 'SELECT count(*) AS count FROM phpbb_gallery';
+    
+    if(!is_null($folderId)) {
+        $sql .= ' WHERE in_group = ' . $folderId;
+    }
+    
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    
+    $db->sql_freeresult($result);
+    
+    return $row['count'];
+}
+
+/**
+ * Zählt die Ordner in der Datenbank.
+ * 
+ * @global type $db
+ * @return type
+ */
+function countFolders() {
+    global $db;
+    $sql = 'SELECT count(*) AS count FROM phpbb_gallery_folders';
+    
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    
+    $db->sql_freeresult($result);
+    
+    return $row['count'];
+}
+
+/**
+ * Holt alle Ordner mit einem definiertem Offset und Limit
+ * 
+ * @global type $db
+ * @param type $limit
+ * @param type $offset
+ * @return type
+ */
+function getAllFolders($limit = NULL, $offset = NULL) {
+    global $db;
+    $sql = 'SELECT id, foldername FROM phpbb_gallery_folders ORDER BY id DESC';
+    
+    if(!is_null($offset)) {
+        $sql .= ' LIMIT ' . $limit;
+    }
+    
+    if(!is_null($offset)) {
+        $sql .= ' OFFSET ' . $offset;
+    }
+    
+    $result = $db->sql_query($sql);
+
+    while($row = $db->sql_fetchrow($result)) {
+        $data[$row['id']]['id'] = $row['id'];
+        $data[$row['id']]['name'] = $row['foldername'];
+    }
+    
+    $db->sql_freeresult($result);
+    
+    return $data;
+}
+
+/**
+ * Holt alle Bilder aus der Datenbank. 
+ * 
+ * @global type $db
+ * @param type $folderId
+ * @param type $limit
+ * @param type $offset
+ * @return type
+ */
+function getAllImages($folderId = NULL, $limit = NULL, $offset = NULL) {
+    global $db;
+    
+    $sql = 'SELECT id, name FROM phpbb_gallery';
+    
+    if(!is_null($folderId)) {
+        $sql .= ' WHERE in_group = ' . $folderId;
+    }
+    
+    $sql .= ' ORDER BY id DESC';
+    
+    if(!is_null($limit)) {
+        $sql .= ' LIMIT ' . $limit;
+    }
+    
+    if(!is_null($offset)) {
+        $sql .= ' OFFSET ' . $offset;
+    }
+    
+    $result = $db->sql_query($sql);
+
+    while($row = $db->sql_fetchrow($result)) {
+        $data[$row['id']]['id'] = $row['id'];
+        $data[$row['id']]['name'] = $row['name'];
+    }
+    
+    $db->sql_freeresult($result);
+    
+    return $data;
+}
+
+/**
+ * Holt die Details eines Bildes aus der Datenbank
+ * 
+ * @global type $db
+ * @param type $pictureId
+ * @return type
+ */
+function getPictureData($pictureId) {
+    global $db;
+    
+    $sql = 'SELECT id, name, date, descr, author, in_group FROM phpbb_gallery WHERE id= ' . $pictureId;
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    return $row;
+}
+
+function getFolderData($folderId) {
+    global $db;
+    
+    $sql = 'SELECT id, foldername FROM phpbb_gallery_folders WHERE id= ' . $folderId;
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    return $row;
+}
+
+/**
+ * Gibt den Usernamen und den Avatar eines Users aus
+ * 
+ * @global type $db
+ * @param type $userId
+ * @return type
+ */
+function getUserData($userId) {
+    global $db;
+    
+    $sql = 'SELECT username, user_avatar, user_rank FROM ' . USERS_TABLE . " WHERE user_id = " . $userId;
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    return $row;
+}
+
+/**
+ * Gibt den Rangtitel aus
+ * 
+ * @global type $db
+ * @param type $rankId
+ * @return type
+ */
+function getRankName($rankId) {
+    global $db;
+    
+    $sql = 'SELECT rank_title FROM ' . RANKS_TABLE . " WHERE rank_id = " . $rankId;
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    return $row['rank_title'];
+}
+
+function getFolderByName($folderName) {
+    global $db;
+    
+    $sql = 'SELECT id FROM phpbb_gallery_folders WHERE foldername = ' . $folderName;
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    return $row['id'];
+}
+
+function formatText($text) {
+    $d1 = array("ä" , "ö", "ü", "ß", "Ä", "Ö", "Ü"); 
+    $d2 = array("&auml;" , "&ouml;", "uuml;", "&szlig;", "&Auml;", "&Ouml;", "&Uuml;"); 
+    $text = str_replace($d1, $d2, $text);
+    
+    $text = preg_replace("~[\r\n]+~", '<br>', $text);
+    
+    return $text;
+}
+
+function charset_decode_utf_8 ($string) {
+    /* Only do the slow convert if there are 8-bit characters */
+    /* avoid using 0xA0 (\240) in ereg ranges. RH73 does not like that */
+    if (!preg_match("/[\200-\237]/", $string)
+     && !preg_match("/[\241-\377]/", $string)
+    ) {
+        return $string;
+    }
+
+    // decode three byte unicode characters
+    $string = preg_replace("/([\340-\357])([\200-\277])([\200-\277])/e",
+        "'&#'.((ord('\\1')-224)*4096 + (ord('\\2')-128)*64 + (ord('\\3')-128)).';'",
+        $string
+    );
+
+    // decode two byte unicode characters
+    $string = preg_replace("/([\300-\337])([\200-\277])/e",
+        "'&#'.((ord('\\1')-192)*64+(ord('\\2')-128)).';'",
+        $string
+    );
+
+    return $string;
+}

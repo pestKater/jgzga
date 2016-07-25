@@ -1,14 +1,14 @@
 <div id="message-box">
     <div class="gallery">
         <a href="./gallery.php?list=folder">
-            <h3>Collectionen <span><!-- IF MAXCOLL > 8 -->{MAXCOLL} Weitere warten auf dich<!-- ENDIF--></span></h3>
+            <h3>Collectionen <span><!-- IF AMOUNT_FOLDERS > 8 -->{AMOUNT_FOLDERS} Weitere warten auf dich<!-- ENDIF--></span></h3>
         </a>
         <!-- BEGIN folder -->
         <div class="gallery-thumb">
-            <a href="./gallery.php?folder=folder&id{folder.ID}">
-                <!-- BEGIN folder.thumbs -->
-                    <img class="mini-thumb" src="./images/gallery/thumbnails/{folder.thumbs.ID}.jpg">
-                <!-- END folder.thumbs -->
+            <a href="./gallery.php?view=folder&id{folder.ID}">
+                <!-- BEGIN folder.thumb -->
+                    <img class="mini-thumb" src="./images/gallery/thumbnails/{folder.thumb.ID}.jpg">
+                <!-- END folder.thumb -->
             </a>
             <div class="gallery-thumb-name">
                 <h4>{folder.NAME}</h4>
@@ -21,7 +21,7 @@
 <div id="message-box">
     <div class="gallery">
         <a href="./gallery.php?list=image">
-            <h3>Bilder <span><!-- IF MAXFILE > 8 -->{MAXFILE} Weitere warten auf dich<!-- ENDIF--></span></h3>
+            <h3>Bilder <span><!-- IF AMOUNT_IMAGES > 8 -->{AMOUNT_IMAGES} Weitere warten auf dich<!-- ENDIF--></span></h3>
         </a>
         <!-- BEGIN pic -->
         <div class="gallery-thumb">

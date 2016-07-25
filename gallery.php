@@ -25,8 +25,10 @@
         $pictureId = 0;
     }
     
-    $canEditPictures = canUserEdit($userId, $pictureId);
-    $canAddPictures = canUserAdd($userId);
+    $canEditPictures    = canUserEdit($userId, $pictureId);
+    $canAddPictures     = canUserAdd($userId);
+    $maxImages          = countPictures();
+    $maxFolders         = countFolders();
     
     // Prüfen welcher Get-Parameter gesetzt ist
     if(isset($_GET['list'])) {
@@ -58,7 +60,21 @@
     }
     
     // Globale Site-Variablen setzen
-    page_header($pageHeader);
+    page_header($pageTitle);
+    
+    $template->assign_vars(array(
+        'AMOUNT_FOLDERS'    => $maxFolders,
+        'AMOUNT_IMAGES'     => $maxImages,
+        'PAGETITLE'         => $pageTitle,
+        'SITE'              => $site,
+        'CAN_EDIT'          => $canEditPictures,
+        'CAN_ADD'           => $canAddPictures,
+    ));
+    
+    $template->assign_block_vars('navlinks', array(
+        'FORUM_NAME'    => $breadcrumpName,
+        'U_VIEW_FORUM'  => $breadcrumpLink,
+    ));
     
     // Template laden
     $template->set_filenames(array(

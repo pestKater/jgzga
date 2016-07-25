@@ -62,27 +62,53 @@
     width:100%;
     text-align: center;
 }
+.pic-info {
+    margin-top:60px;
+}
 .pic-desc {
     padding:20px;
-    margin-top: 60px;
     font-size:1.4em;
     text-align: justify;
+    width:66%;
+    float:left;
 }
 .userinfo {
     float:left;
     margin-left: 20px;
 }
+
+.userinfo ul {
+    list-style: none;
+    margin-left: 10px;
+}
+.userinfo ul {
+    font-size:1.4em;
+}
+.userinfo ul .userrank {
+    margin-bottom: 10px;
+    font-size:0.8em;
+}
+.userinfo ul li span {
+    font-weight: bold;
+}
 .userinfo p {
-    font-size:1.8em;
-    line-height:1.5em;
+    font-size:1.4em;
+    line-height:1em;
 }
 .userinfo p span {
-    font-size:0.5em;
+    font-size:0.8em;
+    line-height:0.5em;
+}
+.userinfo p .rank {
+    margin-bottom:10px;
 }
 .pic-poster {
     height:140px;
     padding:20px;
     margin-top: 20px;
+    width:33%;
+    float:left;
+    background-color: #151515;
 }
 .pic-poster .avatar-container {
     float:left;
@@ -161,7 +187,22 @@
     font-size:0.6em;
     color:#b2b2b2;
 }
-
+.gallery-form textarea {
+    margin-bottom: 20px;
+}
+.gallery-form .inputFile {
+    width:0.1px;
+    height:0.1px;
+    opacity:0;
+    overflow:hidden;
+    z-index: -1;
+    margin-right:20px;
+}
+.gallery-form .chosen-container {
+    width:100% !important;
+    margin-bottom: 20px;
+    font-size:1.2em;
+}
 
 *,
 *:before,

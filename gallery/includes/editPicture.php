@@ -39,7 +39,7 @@ if($id == 'new') {
     $template->assign_vars(array(
         'PICTURE_ID'    => $picture['id'],
         'NAME'          => $picture['name'],
-        'DESCRIPTION'   => nl2br($picture['descr']),
+        'DESCRIPTION'   => $picture['descr'],
         'DATE'          => $picture['date'],
         'AUTHOR'        => $picture['author'],
         'MODE'          => 'edit',

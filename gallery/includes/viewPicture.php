@@ -20,13 +20,6 @@ if($image != false) {
     
     $folder = getFolderData($image['in_group']);
     
-    $descr = $image['descr'];
-    $descr = preg_replace("~[\r\n]+~", '<br>', $descr);
-
-
-    var_dump($descr);
-    die;
-    
     $template->assign_vars(array(
         'TITLE'         => $title,
         'DESCRIPTION'   => str_replace('\n', '<br>', $image['descr']),

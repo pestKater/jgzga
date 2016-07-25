@@ -16,17 +16,6 @@ if(!$request->is_set_post('submit')) {
     exit;
 }
 
-
-
-$descr = $request->variable('description', '');
-
-var_dump($descr);
-die;
-
-$descr = charset_decode_utf_8($descr);
-
-
-
 $sql_arr = array(
         'name'      =>  $db->sql_escape($request->variable('title', '')),
         'date'      =>  $db->sql_escape($request->variable('date', date("Y-m-d"))),

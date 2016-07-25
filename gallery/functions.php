@@ -256,16 +256,6 @@ function getFolderByName($folderName) {
     return $row['id'];
 }
 
-function formatText($text) {
-    $d1 = array("ä" , "ö", "ü", "ß", "Ä", "Ö", "Ü"); 
-    $d2 = array("&auml;" , "&ouml;", "uuml;", "&szlig;", "&Auml;", "&Ouml;", "&Uuml;"); 
-    $text = str_replace($d1, $d2, $text);
-    
-    $text = preg_replace("~[\r\n]+~", '<br>', $text);
-    
-    return $text;
-}
-
 function charset_decode_utf_8 ($string) {
     /* Only do the slow convert if there are 8-bit characters */
     /* avoid using 0xA0 (\240) in ereg ranges. RH73 does not like that */

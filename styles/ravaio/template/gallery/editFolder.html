@@ -1,0 +1,30 @@
+<div id="message-box">
+    <!-- IF CAN_EDIT -->
+    <form enctype="multipart/form-data" method="POST" class="gallery-form" id="gallery-form" accept-charset="UTF-8" action="gallery/handlers/editFolder.php">
+        <input placeholder="Titel (Pflichtangabe)" class="input" type="text" name="title" id="title" size="45" tabindex="2" value="{NAME}" required> 
+        <input type="hidden" name="date" id="date" value="{DATE}">
+        <input type="hidden" name="author" id="author" value="{AUTHOR}">
+        <input type="hidden" name="mode" id="mode" value="{MODE}">
+        <input type="hidden" name="folderid" id="folderid" value="{FOLDER_ID}">
+        <input type="submit" name="submit" value="Absenden" class="button">
+    </form>
+    <script>
+        $('form').submit( function(ev) {           
+            var title = $('#title');
+            var text = title.val();
+            
+            text = text.replace(/ä/g,"&auml;");
+            text = text.replace(/ö/g, '&ouml;');
+            text = text.replace(/ü/g, '&uuml;');
+            text = text.replace(/Ä/g, '&Auml;');
+            text = text.replace(/Ö/g, '&Ouml;');
+            text = text.replace(/Ü/g, '&Uuml;');
+            text = text.replace(/ß/g, '&szlig;');
+            
+            title.val(text);
+        });
+    </script>
+    <!-- ELSE -->
+        <p>Du hast keine Berechtigung diese Seite anzusehen.</p>
+    <!-- ENDIF -->
+</div>

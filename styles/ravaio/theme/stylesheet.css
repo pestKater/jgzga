@@ -127,6 +127,7 @@
     height:200px;
     width:200px;
     transition:all 0.5s;
+    background-color:#151515;
 }
 .gallery-thumb:hover {
     border:2px solid #256F26;

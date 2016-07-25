@@ -9,7 +9,7 @@ global $db;
  * @param type $pictureId
  * @return boolean
  */
-function canUserEdit($userId, $pictureId) {
+function canUserEdit($userId, $pictureId = 0, $context = 'null') {
     global $db;
     
     // Checken ob User Mod oder Admin ist
@@ -27,8 +27,12 @@ function canUserEdit($userId, $pictureId) {
         return true;
     }
     
-    // Prüfen ob das Bild vom User eingestellt wurde
-    $sql = "SELECT count(*) AS count FROM phpbb_gallery WHERE id = " . $pictureId . " AND author = " . $userId;
+    if($context == 'image') {
+        $sql = "SELECT count(*) AS count FROM phpbb_gallery WHERE id = " . $pictureId . " AND author = " . $userId;
+    } elseif ($context == 'folder') {
+        $sql = "SELECT count(*) AS count FROM phpbb_gallery_folders WHERE id = " . $pictureId . " AND author = " . $userId;
+    }
+
     $result = $db->sql_query($sql);
     $row = $db->sql_fetchrow($result);
     $db->sql_freeresult($result);
@@ -201,7 +205,7 @@ function getPictureData($pictureId) {
 function getFolderData($folderId) {
     global $db;
     
-    $sql = 'SELECT id, foldername FROM phpbb_gallery_folders WHERE id= ' . $folderId;
+    $sql = 'SELECT id, foldername, date, author FROM phpbb_gallery_folders WHERE id= ' . $folderId;
     $result = $db->sql_query($sql);
     $row = $db->sql_fetchrow($result);
     $db->sql_freeresult($result);

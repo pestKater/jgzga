@@ -13,19 +13,11 @@
     $userId = $user->data['user_id'];
     
     // Darf ein Nutzer editieren oder anlegen?
-    if(isset($_GET['image']) || isset($_GET['folder'])) {
-        $idFromGet = $request->variable('id');
-        
-        if(isset($_GET['image'])) {
-            $pictureId = $idFromGet;
-        } else {
-            $folderId = $idFromGet;
-        }
-    } else {
-        $pictureId = 0;
-    }
+    $view = $request->variable('view', '');
+    $idFromGet = $request->variable('id', 0);
+
+    $canEditPictures    = canUserEdit($userId, $idFromGet, $view);
     
-    $canEditPictures    = canUserEdit($userId, $pictureId);
     $canAddPictures     = canUserAdd($userId);
     $maxImages          = countPictures();
     $maxFolders         = countFolders();

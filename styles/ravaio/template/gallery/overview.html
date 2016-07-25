@@ -4,16 +4,16 @@
             <h3>Collectionen <span><!-- IF AMOUNT_FOLDERS > 8 -->{AMOUNT_FOLDERS} Weitere warten auf dich<!-- ENDIF--></span></h3>
         </a>
         <!-- BEGIN folder -->
-        <div class="gallery-thumb">
-            <a href="./gallery.php?view=folder&id{folder.ID}">
+        <a href="./gallery.php?view=folder&id={folder.ID}">
+            <div class="gallery-thumb">
                 <!-- BEGIN folder.thumb -->
                     <img class="mini-thumb" src="./images/gallery/thumbnails/{folder.thumb.ID}.jpg">
                 <!-- END folder.thumb -->
-            </a>
-            <div class="gallery-thumb-name">
+                <div class="gallery-thumb-name">
                 <h4>{folder.NAME}</h4>
+                </div>
             </div>
-        </div>
+        </a>
         <!-- END folder -->
         <div class="clear"></div>
     </div> 

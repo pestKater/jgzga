@@ -19,17 +19,24 @@
 .unit h3 img {
     margin-bottom:20px;
 }
+.unit details summary {
+    cursor: pointer;
+    text-align: center;
+}
+.unit details summary:focus {
+    outline: none;
+}
 .unit p {
     font-size:1.2em;
     text-align: justify;
 }
 .members {
-    width:800px;
+    width:470px;
     margin:auto;
 }
 .unitmember {
-    width:380px;
-    margin:10px;
+    width:230px;
+    margin:2px;
     float:left;
     padding:10px;
     transition: all 0.5s;
@@ -55,27 +62,53 @@
     width:100%;
     text-align: center;
 }
+.pic-info {
+    margin-top:60px;
+}
 .pic-desc {
     padding:20px;
-    margin-top: 60px;
     font-size:1.4em;
     text-align: justify;
+    width:66%;
+    float:left;
 }
 .userinfo {
     float:left;
     margin-left: 20px;
 }
+
+.userinfo ul {
+    list-style: none;
+    margin-left: 10px;
+}
+.userinfo ul {
+    font-size:1.4em;
+}
+.userinfo ul .userrank {
+    margin-bottom: 10px;
+    font-size:0.8em;
+}
+.userinfo ul li span {
+    font-weight: bold;
+}
 .userinfo p {
-    font-size:1.8em;
-    line-height:1.5em;
+    font-size:1.4em;
+    line-height:1em;
 }
 .userinfo p span {
-    font-size:0.5em;
+    font-size:0.8em;
+    line-height:0.5em;
+}
+.userinfo p .rank {
+    margin-bottom:10px;
 }
 .pic-poster {
     height:140px;
     padding:20px;
     margin-top: 20px;
+    width:33%;
+    float:left;
+    background-color: #151515;
 }
 .pic-poster .avatar-container {
     float:left;
@@ -94,6 +127,7 @@
     height:200px;
     width:200px;
     transition:all 0.5s;
+    background-color:#151515;
 }
 .gallery-thumb:hover {
     border:2px solid #256F26;
@@ -140,6 +174,76 @@
     text-align: right;
 }
 
+.gallery-thumb .mini-thumb {
+    height:33%;
+    width:33%;
+    float:left;
+}
+
+.gallery h3 {
+    font-size:2em;
+    margin-left:10px;
+}
+.gallery h3 span{
+    font-size:0.6em;
+    color:#b2b2b2;
+}
+.gallery-form textarea {
+    margin-bottom: 20px;
+}
+.gallery-form .inputFile {
+    width:0.1px;
+    height:0.1px;
+    opacity:0;
+    overflow:hidden;
+    z-index: -1;
+    margin-right:20px;
+}
+.gallery-form .chosen-container {
+    width:100% !important;
+    margin-bottom: 20px;
+    font-size:1.2em;
+}
+.gallery-comments {
+    width:100%;
+    margin-top:60px;
+}
+.gallery-comments summary {
+    font-size:1.8em;
+    margin-bottom:40px;
+}
+.gallery-comments summary:focus {
+    outline: none;
+}
+.gallery-comments #comment_textarea {
+    border:1px solid #151515;
+    border-radius: 10px;
+    padding:20px;
+}
+.gallery-comments .comment {
+    width:80%;
+    margin:auto;
+    margin-top:20px;
+    padding:10px;
+}
+.gallery-comments .comment .comment-avatar {
+    float:left;
+    width:20%
+}
+.gallery-comments .comment .comment-content {
+    float:left;
+    min-height: 120px;
+    background-color:#151515;
+    padding:20px;
+    width:80%;
+}
+
+.gallery-comments .comment .comment-content p {
+    font-size:1.3em;
+}
+.gallery-comments .comment .comment-content p span {
+   font-size: 0.8em;
+}
 
 *,
 *:before,

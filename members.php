@@ -17,7 +17,7 @@
         10,
         11,
         12,
-        13,
+        13
     );
     
     $data = array();
@@ -73,6 +73,20 @@
         }
     }
     
+    $sql = "SELECT count(*) AS count FROM " . USER_GROUP_TABLE . " WHERE group_id = 8 AND user_id = " . $user->data['user_id'];
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    
+    if($row['count'] == '1') {
+        $isMember = true;
+    } else {
+        $isMember = false;
+    }
+    
+    $template->assign_vars(array(
+        'ISMEMBER' => $isMember,
+    ));
+    
     // Load Template
     $template->set_filenames(array(
         'body' => 'members.html',
@@ -81,4 +95,5 @@
     // End Controller
     make_jumpbox(append_sid("{$phpbb_root_path}viewforum.$phpEx"));
     page_footer();
+    
 ?>

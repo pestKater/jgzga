@@ -1,0 +1,35 @@
+<div id="message-box">
+    <div class="gal-pagi">
+        <!-- IF PREVIOUS >= 0 -->
+        <div class="pagi-prev">
+            <a href="gallery.php?{PAGINATION}&offset={PREVIOUS}" class="button-flat" title="Letzte Seite"><span>&#8676; Letzte Seite</span></a>
+        </div>
+        <!-- ENDIF -->
+        <!-- IF NEXT < AMOUNT_IMAGES -->
+        <div class="pagi-next">
+            <a href="gallery.php?{PAGINATION}&offset={NEXT}" class="button-flat" title="Nächste Seite"><span>Nächste Seite &#8677;</span></a>
+        </div>
+        <!-- ENDIF -->
+        <div class="clear"></div>
+    </div>
+    <div class="gallery">
+        <!-- BEGIN list -->
+        <a href="./gallery.php?view={CONTEXT}&id={list.ID}">
+            <div class="gallery-thumb">
+                <!-- IF PAGETITLE != 'Alle Collections' --> 
+                    <img src="./images/gallery/thumbnails/{list.ID}.jpg">
+                <!-- ELSE -->
+                    <!-- BEGIN folder.thumb -->
+                        <img class="mini-thumb" src="./images/gallery/thumbnails/{list.thumb.ID}.jpg">
+                    <!-- END folder.thumb -->
+                <!-- ENDIF -->
+                <div class="gallery-thumb-name">
+                    <h4>{list.NAME}</h4>
+                </div>
+            </div>  
+        </a>
+        <!-- END list -->
+        <div class="clear"></div>
+    </div> 
+    <div class="cursite"><p>Seite {CUR_PAGE} von {MAX_PAGES}</p></div>
+</div>

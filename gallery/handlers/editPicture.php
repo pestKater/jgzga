@@ -3,23 +3,29 @@
  * Includes
  ******************************************************************************/
 define('IN_PHPBB', true);
-$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../';
+$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../../';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
-include('../common.php');
-require_once('php_image_magician.php');
+include($phpbb_root_path. 'common.' . $phpEx);
+require_once('../php_image_magician.php');
+require_once('../functions.php');
 
 /*******************************************************************************
  * Errorhandling
  ******************************************************************************/
-if(!$request->is_set_post('submit')) {
+if($request->is_set_post('submit')) {
+    // do nothing
+} elseif($request->is_set_post('delete')) {
+    // do nothing
+} else {
     exit;
 }
 
 $sql_arr = array(
-        'name'      =>  $db->sql_escape($request->variable('title', '')),
+        'name'      =>  html_entity_decode($db->sql_escape($request->variable('title', ''))),
         'date'      =>  $db->sql_escape($request->variable('date', date("Y-m-d"))),
-        'descr'     =>  $db->sql_escape($request->variable('description', '')),
-        'author'    =>  $db->sql_escape($request->variable('author', ''))
+        'descr'     =>  html_entity_decode($db->sql_escape($request->variable('description', ''))),
+        'author'    =>  $db->sql_escape($request->variable('author', '')),
+        'in_group'  =>  $request->variable('folder', ''),
     );
 
 if($request->variable('mode', '') == 'new') {
@@ -68,9 +74,17 @@ if($request->variable('mode', '') == 'new') {
 if($request->variable('mode', '') == 'edit') {
     $pictureId = $request->variable('picid', '');
     
-    $sql = 'UPDATE phpbb_gallery  SET ' . $db->sql_build_array('UPDATE', $sql_arr) . ' WHERE id=' . $pictureId;
-    $db->sql_query($sql);
+    if($request->is_set_post('submit')) {
+        $sql = 'UPDATE phpbb_gallery  SET ' . $db->sql_build_array('UPDATE', $sql_arr) . ' WHERE id=' . $pictureId;
+        $db->sql_query($sql);
+    } elseif($request->is_set_post('delete')) {
+        $sql = 'DELETE FROM phpbb_gallery WHERE id= ' . $pictureId;
+        $db->sql_query($sql);
+        
+        header('Location: ' . $phpbb_root_path. 'gallery.' . $phpEx . '?list=image');
+        exit;
+    }
 }
 
-header('Location: ../gallery.php?file=' . $pictureId);
+header('Location: ' . $phpbb_root_path. 'gallery.' . $phpEx . '?view=image&id=' . $pictureId);
 ?>

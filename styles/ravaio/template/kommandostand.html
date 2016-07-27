@@ -13,7 +13,26 @@
         <div class="panel">
             <div class="inner">                
                 <div id="message-box" class="kommandostand">
-					<p>{PAGECONTENT}</p>
+					<!-- IF not IS_MEMBER -->
+						<!-- BEGIN server -->
+						<div>
+							<form method="POST" action="kommandostand/formhandler.php">
+								<label for="modset">{server.NAME}</label>
+								<select name="modset">
+									<!-- BEGIN modset -->
+									<option value="{server.modset.ID}">{server.modset.NAME}</option>
+									<!-- END modset -->
+								</select>
+								<input type="hidden" name="serverid" value="{server.ID}">							
+								<!-- IF server.IS_ONLINE -->
+									<input type="submit" name="stop" value="Stoppen" class="button">
+								<!-- ELSE -->
+									<input type="submit" name="start" value="Starten" class="button">
+								<!-- ENDIF -->
+							</form>
+						</div>
+						<!-- END server -->
+					<!-- ENDIF -->
 				</div>
 			</div>
 		</div>

@@ -1,13 +1,10 @@
 <?php
-    /*define('IN_PHPBB', true);
-    $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
-    $phpEx = substr(strrchr(__FILE__, '.'), 1);
-    include($phpbb_root_path . 'common.' . $phpEx);
-	*/
 /**
 * Holt die Modstrings aus der Datenbank, hängt vor jeden Mod das Verzeichnis und gibt einen String zurück
 */
 function generateModstring($modstringId) {
+	global $db;
+	
 	$modstring_client = '';
 	$modstring_serv = '';
 	
@@ -158,4 +155,54 @@ function sentModstringInfos($modstringId, $gametype, $name, $moddir, $moddir_ser
 	
 	$pdo->query($sql);
 }
+
+function isUserMember($userId) {
+	global $db;
+	
+	$sql = 'SELECT count(*) AS count FROM ' . USER_GROUP_TABLE . ' WHERE group_id = 8 AND user_id = ' . $userId;
+	$result = $db->sql_query($sql);
+	$row = $db->sql_fetchrow($result);
+	$db->sql_freeresult($result);
+	
+	if($row['count'] == 1) {
+		return true;
+	}
+	
+	return false;
+}
+
+function getAllServer ($isAdmin = false) {
+	global $db;
+	$data = array ();
+	$sql = 'SELECT id, name, port FROM tbl_server';
+	
+	if (!$isAdmin) {
+		$sql .= ' WHERE admin = 0';
+	}
+	$result = $db->sql_query($sql);
+	while($row = $db->sql_fetchrow($result)) {
+		$data[$row['id']]['ServerId'] = $row['id'];
+		$data[$row['id']]['ServerName'] = $row['name'];
+		$data[$row['id']]['ServerPort'] = $row['port'];
+	}
+	$db->sql_freeresult($result);
+	
+	return $data;
+}
+
+function getAllModsets() {
+	global $db;
+	$data = array ();
+	$sql = 'SELECT id, name FROM tbl_modstrings';
+	
+	$result = $db->sql_query($sql);
+	while($row = $db->sql_fetchrow($result)) {
+		$data[$row['id']]['ModsetId'] = $row['id'];
+		$data[$row['id']]['ModsetName'] = $row['name'];
+	}
+	$db->sql_freeresult($result);
+	
+	return $data;
+}
+
 ?>

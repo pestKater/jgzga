@@ -1,0 +1,60 @@
+array(2) { 
+	[1]=> array(2) { 
+		["ServerId"]=> string(1) "1" 
+		["ServerName"]=> string(9) "#0 Source" 
+	} 
+	[2]=> array(2) { 
+		["ServerId"]=> string(1) "2" 
+		["ServerName"]=> string(9) "#1 Public" 
+	} 
+} 
+
+
+array(3) { 
+	["JgZg-A Public"]=> array(37) { 
+		["dedicated"]=> string(1) "d" 
+		["game_descr"]=> string(24) "[SMT] Endless War v2.17b" 
+		["game_dir"]=> string(5) "Arma3" 
+		["game_id"]=> int(107410) 
+		["gq_address"]=> string(14) "138.201.82.235" 
+		["gq_dedicated"]=> string(1) "d" 
+		["gq_gametype"]=> string(24) "[SMT] Endless War v2.17b" 
+		["gq_hostname"]=> string(47) "[JgZg-A] #1 Public || www.jaegerzug-achilles.de" 
+		["gq_joinlink"]=> string(36) "steam://connect/138.201.82.235:2312/" 
+		["gq_mapname"]=> string(9) "Chernarus" 
+		["gq_maxplayers"]=> int(64) 
+		["gq_mod"]=> string(5) "Arma3" 
+		["gq_name"]=> string(15) "Armed Assault 3" 
+		["gq_numplayers"]=> int(0) 
+		["gq_online"]=> bool(true) 
+		["gq_password"]=> int(0) 
+		["gq_port_client"]=> int(2312) 
+		["gq_port_query"]=> int(2313) 
+		["gq_protocol"]=> string(6) "source" 
+		["gq_transport"]=> string(3) "udp" 
+		["gq_type"]=> string(13) "armedassault3" 
+		["hostname"]=> string(47) "[JgZg-A] #1 Public || www.jaegerzug-achilles.de" 
+		["keywords"]=> string(85) "bf,r162,n0,s7,i3,mf,lf,vt,dt,tcoop,g65545,h9b897ad6,c4194303-4194303,f0,pw,e15,j0,k0," 
+		["map"]=> string(9) "Chernarus" 
+		["max_players"]=> int(64) 
+		["num_bots"]=> int(0) 
+		["num_players"]=> int(0) 
+		["os"]=> string(1) "w" 
+		["password"]=> int(0) 
+		["players"]=> array(0) { } 
+		["port"]=> int(2312) 
+		["protocol"]=> int(17) 
+		["secure"]=> int(0) 
+		["steam_id"]=> int(-1846215679) 
+		["steamappid"]=> int(0) 
+		["teams"]=> array(0) { } 
+		["version"]=> string(11) "1.62.137494" 
+	} 
+}
+
+TODO:
+- neue Server-Monitor Config
+- Formhandler
+- CSS Kram
+- Datenbanken überarbeitet/überdenken
+- functions.php überarbeiten

@@ -14,9 +14,11 @@
     
     // Groups that should displayed
     $group_ids = array(
-        4,
-        5,
-        9
+        10,
+        11,
+        12,
+        13,
+        14,
     );
     
     $data = array();

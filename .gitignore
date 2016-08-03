@@ -9,3 +9,4 @@ nbproject/
 images/gallery/*
 !images/gallery/thumbnails
 images/gallery/thumbnails/*
+.idea

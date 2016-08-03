@@ -14,10 +14,9 @@
     
     // Groups that should displayed
     $group_ids = array(
-        10,
-        11,
-        12,
-        13
+        4,
+        5,
+        9
     );
     
     $data = array();
@@ -56,13 +55,6 @@
         $result = $db->sql_query($sql);
         
         while($row = $db->sql_fetchrow($result)) {
-            $data[$group['id']]['users'][$row['user_id']] = array(
-                'id'        => $row['user_id'],
-                'name'      => $row['username'],
-                'avatar'    => $row['user_avatar'],
-                'rank'      => $row['rank_title'],
-                'rankimage' => $row['rank_image']
-            );
             $template->assign_block_vars('unit.member', array(
                 'USERNAME'  => $row['username'],
                 'AVATAR'    => $row['user_avatar'],

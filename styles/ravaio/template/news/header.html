@@ -8,13 +8,11 @@
         
         <!-- IF CAN_ADD -->
             <div class="sub-header-buttons">
-                <!-- IF CAN_EDIT -->
-                    <!-- IF SITE == 'viewPicture' -->
-                        <a href="gallery.php?edit=image&id={PICTURE}" class="button-flat" title="Bild editieren"><span>editieren</span></a>
-                    <!-- ENDIF -->
-                    <!-- IF SITE == 'viewFolder' -->
-                        <a href="gallery.php?edit=folder&id={FOLDER}" class="button-flat" title="Collection editieren"><span>editieren</span></a>
-                    <!-- ENDIF -->
+                <!-- IF SITE == 'viewArticle' -->
+                    <a href="news.php?edit=article&id={ARTICLE_ID}" class="button-flat" title="Artikel editieren"><span>editieren</span></a>
+                <!-- ENDIF -->
+                <!-- IF SITE == 'viewFolder' -->
+                    <a href="gallery.php?edit=folder&id={FOLDER}" class="button-flat" title="Collection editieren"><span>editieren</span></a>
                 <!-- ENDIF -->
                 <a href="news.php?edit=article&id=new" class="button icon-button reply-icon" title="Neuen Post erstellen"><span>Neuer Post</span></a>
             </div>

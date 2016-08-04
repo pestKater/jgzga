@@ -281,6 +281,7 @@
 .overview-widget .news-image {
     width:20%;
     float:left;
+    height:95px;
 }
 .overview-widget .news-image img {
     width:100%;

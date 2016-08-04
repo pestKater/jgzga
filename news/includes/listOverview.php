@@ -20,10 +20,14 @@ foreach($featuredArticles as $singleFeatured) {
 $otherArticles = getOverviewArticles();
 
 foreach($otherArticles as $singleArticle) {
+    
+    $category = getCategoryName($singleArticle['category']);
+    
     $template->assign_block_vars('articles', array(
         'ID'        => $singleArticle['id'],
         'TITLE'     => $singleArticle['title'],
         'CONTENT'   => substr($singleArticle['content'], 0, 190),
+        'CATEGORY'  => $category,
     ));
 }
 // get the next events

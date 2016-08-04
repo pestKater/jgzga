@@ -1,0 +1,56 @@
+<div id="message-box"> 
+        <ul class="slides">
+            <!-- BEGIN featured -->
+            <li class="mySlides">
+                <a href="news.php?view=article?id={featured.ID}">
+                    <img src="images/news/{featured.ID}.jpg">
+                </a>
+                <div class="news-information">
+                    <h3><a href="news.php?view=article?id={featured.ID}">{featured.TITLE}</a></h3>
+                    <p>{featured.CONTENT}... <a href="news.php?view=article?id={featured.ID}">weiterlesen</a></p>
+                </div>
+            </li>
+             <!-- END featured -->
+        </ul> 
+    
+    <div class="overview-widget">
+        <h2>Mehr Neuigkeiten</h2>
+        <!-- BEGIN articles -->
+        <div class="singleNews">
+            <div class="news-image">
+                <a href="news.php?view=article?id={articles.ID}"><img src="images/news/{articles.ID}.jpg"></a>
+            </div>
+            <div class="news-teaser">
+                <h3><a href="news.php?view=article?id={articles.ID}">{articles.TITLE}</a></h3>
+                <p>{articles.CONTENT}... <a href="news.php?view=article?id={articles.ID}">weiterlesen</a></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!-- END articles -->
+    </div>
+    <div class="overview-widget">
+        <h2>Anstehende Termine</h2>
+        <h2>Schreischachtel&trade;</h2>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    var slideIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none"; 
+        }
+        slideIndex++;
+        if (slideIndex > x.length) {slideIndex = 1} 
+        x[slideIndex-1].style.display = "block"; 
+        setTimeout(carousel, 8000); // Change image every 2 seconds
+    }
+</script>

@@ -245,6 +245,55 @@
    font-size: 0.8em;
 }
 
+.slides .mySlides {
+    width:100%;
+    text-align: center;
+    background-color:grey;
+    height:400px;
+    overflow: hidden;
+    position:relative;
+}
+.slides .mySlides img {
+    width:100%;
+}
+.slides .mySlides .news-information {
+    position:absolute;
+    z-index: 15;
+    bottom:0;
+    left:0;
+    padding:20px;
+    text-align: justify;
+    background-color:rgba(0,0,0,0.5);
+    font-size:1.2em;
+}
+
+.overview-widget {
+    width:50%;
+    float:left;
+    margin-top: 60px;
+}
+.overview-widget h2 {
+    padding-left:20px;
+}
+.singleNews {
+    padding:20px;
+}
+.overview-widget .news-image {
+    width:20%;
+    float:left;
+}
+.overview-widget .news-image img {
+    width:100%;
+    overflow:hidden;
+}
+.overview-widget .news-teaser {
+    float:left;
+    width:80%;
+    text-align: justify;
+    padding-left:20px;
+    font-size:1.2em;
+}
+
 *,
 *:before,
 *:after {

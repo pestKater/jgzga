@@ -11,11 +11,8 @@
     $user->setup();
     $userId = $user->data['user_id'];
     
-    // Vars I need to get from scripts
-    $pageTitle = "Newstest";
-    $canAddNews = true;
-    $breadcrumpName = "News";
-    $breadcrumpLink = append_sid("{$phpbb_root_path}gallery.$phpEx" . '?list=folder');
+    // Can add news
+    $canAddNews = canUserAdd($userId);
     
     if(isset($_GET['list'])) {
         $site = 'list';
@@ -40,6 +37,7 @@
             include('news/includes/sorterEdit.php');
             break;
         default:
+            include('news/includes/listOverview.php');
             break;
     }
     
@@ -49,6 +47,7 @@
     $template->assign_vars(array(
         'PAGETITLE'         => $pageTitle,
         'CAN_ADD'           => $canAddNews,
+        'SITE'              => $site,
     ));
     
     $template->assign_block_vars('navlinks', array(

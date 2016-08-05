@@ -105,3 +105,36 @@ function getRankName($rankId) {
     
     return $row['rank_title'];
 }
+
+function getAllArticlesById($articleId) {
+    global $db;
+    $data = array();
+    
+    $sql = 'SELECT id, title, content FROM phpbb_news_articles WHERE category = ' . $articleId . ' ORDER BY id DESC';
+    $result = $db->sql_query($sql);
+    
+    while($row = $db->sql_fetchrow($result)) {
+        $data[$row['id']]['id'] = $row['id'];
+        $data[$row['id']]['title'] = $row['title'];
+        $data[$row['id']]['content'] = $row['content'];
+    }
+    
+    return $data;
+}
+
+function getAllArticles() {
+    global $db;
+    $data = array();
+    
+    $sql = 'SELECT id, title, content, category FROM phpbb_news_articles ORDER BY id DESC';
+    $result = $db->sql_query($sql);
+    
+    while($row = $db->sql_fetchrow($result)) {
+        $data[$row['id']]['id'] = $row['id'];
+        $data[$row['id']]['title'] = $row['title'];
+        $data[$row['id']]['content'] = $row['content'];
+        $data[$row['id']]['category'] = $row['category'];
+    }
+    
+    return $data;
+}

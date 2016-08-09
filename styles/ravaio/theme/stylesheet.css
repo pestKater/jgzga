@@ -328,6 +328,7 @@
 }
 .shout-avatar {
     float:left;
+    width:20%;
 }
 .shout-avatar img {
     max-height:50px;
@@ -337,6 +338,7 @@
 .shout {
     float:left;
     margin-left:20px;
+    width:80%
 }
 .shout-text {
     text-align: justify;

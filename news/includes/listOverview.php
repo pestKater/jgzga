@@ -1,6 +1,6 @@
 <?php
 
-$pageTitle  = 'Jägerzug Achilles I';
+$pageTitle  = 'Startseite';
 $site       = 'overview';
 $breadcrumpName = 'News';
 $breadcrumpLink = append_sid("{$phpbb_root_path}news.$phpEx" . '?list=overview');

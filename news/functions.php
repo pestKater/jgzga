@@ -3,7 +3,7 @@ function canUserAdd($userId) {
     global $db;
     
     $groups = array(
-        8,
+        5,
     );
     $sql = "SELECT count(*) AS count FROM " . USER_GROUP_TABLE . " WHERE user_id = " . $userId . " AND " . $db->sql_in_set('group_id', $groups);
     $result = $db->sql_query($sql);
@@ -29,6 +29,21 @@ function getAllCategories() {
             $data[$row['id']]['id'] = $row['id'];
             $data[$row['id']]['name'] = $row['name'];
         }
+    }
+    
+    return $data;
+}
+
+function getAllEventCategories() {
+    global $db;
+    $data = array();
+    
+    $sql = "SELECT id, name FROM phpbb_events_categories ORDER BY id ASC";
+    $result = $db->sql_query($sql);
+    
+    while($row = $db->sql_fetchrow($result)) {
+        $data[$row['id']]['id'] = $row['id'];
+        $data[$row['id']]['name'] = $row['name'];
     }
     
     return $data;
@@ -137,4 +152,53 @@ function getAllArticles() {
     }
     
     return $data;
+}
+
+function getShoutsOverview() {
+    global $db;
+    $data = array();
+    
+    $sql = 'SELECT id, author, date, comment FROM phpbb_shoutbox ORDER BY id DESC LIMIT 5';
+    $result = $db->sql_query($sql);
+    
+    while($row = $db->sql_fetchrow($result)) {
+        $data[$row['id']]['id'] = $row['id'];
+        $data[$row['id']]['author'] = $row['author'];
+        $data[$row['id']]['date'] = $row['date'];
+        $data[$row['id']]['comment'] = $row['comment'];
+    }
+    
+    return $data;
+}
+
+function getAllShouts() {
+    global $db;
+    $data = array();
+    
+    $sql = 'SELECT id, author, date, comment FROM phpbb_shoutbox ORDER BY id DESC';
+    $result = $db->sql_query($sql);
+    
+    while($row = $db->sql_fetchrow($result)) {
+        $data[$row['id']]['id'] = $row['id'];
+        $data[$row['id']]['author'] = $row['author'];
+        $data[$row['id']]['date'] = $row['date'];
+        $data[$row['id']]['comment'] = $row['comment'];
+    }
+    
+    return $data;
+}
+
+function isMember($userId) {
+    global $db;
+    
+    $sql = 'SELECT count(*) AS count FROM '.USER_GROUP_TABLE.' WHERE user_id = ' . $userId . ' AND group_id = 8';
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    
+    if($row['count'] == 1) {
+        return true;
+    }
+    
+    return false;
+    
 }

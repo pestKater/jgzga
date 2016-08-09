@@ -32,5 +32,24 @@ foreach($otherArticles as $singleArticle) {
 }
 // get the next events
 
-// get the last posts
+
+// get the last shouts
+$shouts = getShoutsOverview();
+
+$template->assign_vars(array(
+    'USER_ID' => $userId,
+));
+
+foreach ($shouts as $shout) {
+    $poster = getUserData($shout['author']);
+    
+    $template->assign_block_vars('shouts', array(
+        'SHOUT_ID'    => $shout['id'],
+        'AUTHOR_ID'     => $shout['author'],
+        'AUTHOR_NAME'    => $poster['username'],
+        'DATE'    => date("\a\m m.d.y \u\m H:i", strtotime($shout['date'])),
+        'SHOUT'    => $shout['comment'],
+        'AVATAR'        => $poster['user_avatar'],
+    ));
+}
 

@@ -1,9 +1,9 @@
 <?php
-$site           = 'edit';
-$breadcrumpName = 'News';
-$breadcrumpLink = append_sid("{$phpbb_root_path}news.$phpEx" . '?list=overview');
+$site           = 'editEvent';
+$breadcrumpName = 'Termine';
+$breadcrumpLink = append_sid("{$phpbb_root_path}news.$phpEx" . '?list=events');
 
-$categories = getAllCategories();
+$categories = getAllEventCategories();
 
 foreach($categories as $category) {
     $template->assign_block_vars('categories', array(
@@ -13,7 +13,7 @@ foreach($categories as $category) {
 }
 
 if($id == 'new') {
-    $pageTitle = 'Neuen Post erstellen';
+    $pageTitle = 'Neuen Termin eintragen';
     
     $template->assign_vars(array(
         'DATE'          => date("Y-m-d H:i:s"),

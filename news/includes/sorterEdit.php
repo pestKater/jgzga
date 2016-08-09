@@ -5,6 +5,6 @@ $id = request_var('id', 'new');
 if($mode == 'article') {
     include 'news/includes/editArticle.php';
 } elseif($mode == 'event') {
-    //
+    include 'news/includes/editEvent.php';
 }
 

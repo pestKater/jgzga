@@ -11,4 +11,7 @@ elseif($mode == 'category') {
 elseif($mode == 'archive') {
     include 'news/includes/listAll.php';
 }
+elseif($mode == 'shouts') {
+    include 'news/includes/listShouts.php';
+}
 

@@ -48,7 +48,10 @@
         'PAGETITLE'         => $pageTitle,
         'CAN_ADD'           => $canAddNews,
         'SITE'              => $site,
+        'IS_MEMBER'         => isMember($userId),
     ));
+    
+    
     
     $template->assign_block_vars('navlinks', array(
         'FORUM_NAME'    => $breadcrumpName,

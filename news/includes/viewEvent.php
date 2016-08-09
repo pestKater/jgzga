@@ -1,19 +1,14 @@
 <?php
-$site           = 'viewArticle';
-$breadcrumpName = 'Alle News';
-$breadcrumpLink = append_sid("{$phpbb_root_path}news.$phpEx" . '?list=article&offset=0');
+$site           = 'viewEvent';
+$breadcrumpName = 'Alle Events';
+$breadcrumpLink = append_sid("{$phpbb_root_path}news.$phpEx" . '?list=events&offset=0');
 
 $article = getArticleById($id);
 
 if($article != false) {
     
-    if($article['category'] == 1) {
-        header('Location: ' . $phpbb_root_path. 'news.' . $phpEx . '?view=event&id='.$id);
-        exit;
-    }
-    
-    $category = getCategoryName($article['category']);
-    $pageTitle  = $article['title'];
+    $category = getEventCategory($article['eventCategory']);
+    $pageTitle  = date('d.m.Y \u\m H:i',strtotime($article['dueDate'])) . ': ' . $article['title'];
     $author     = getUserData($article['author']);
 
     $userrank = getRankName($author['user_rank']);

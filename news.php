@@ -10,6 +10,7 @@
     $auth->acl($user->data);
     $user->setup();
     $userId = $user->data['user_id'];
+    $isMember = isMember($userId);
     
     // Can add news
     $canAddNews = canUserAdd($userId);
@@ -48,7 +49,7 @@
         'PAGETITLE'         => $pageTitle,
         'CAN_ADD'           => $canAddNews,
         'SITE'              => $site,
-        'IS_MEMBER'         => isMember($userId),
+        'IS_MEMBER'         => $isMember,
     ));
     
     

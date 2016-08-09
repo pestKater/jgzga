@@ -22,8 +22,9 @@ if($id == 'new') {
     ));
     
 } else {
-    $article = getArticleById($id);
+    $article = getEventById($id);
     
+    $pageTitle = 'Termin bearbeiten: ' . $article['title'];
     $template->assign_vars(array(
         'DATE'          => date("Y-m-d H:i:s"),
         'AUTHOR'        => $userId,
@@ -32,6 +33,7 @@ if($id == 'new') {
         'AUTHOR'        => $article['author'],
         'TITLE'         => $article['title'],
         'DESCRIPTION'   => $article['content'],
-        'CATEGORY'      => $article['category'],
+        'CATEGORY'      => $article['eventCategory'],
+        'DUE_DATE'      => $article['dueDate'],
     ));
 }

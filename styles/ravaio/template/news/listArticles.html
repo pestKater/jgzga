@@ -1,3 +1,4 @@
+<!-- IF not EVENTS -->
 <div id="message-box"> 
         <!-- BEGIN article -->
         <div class="archive-news">
@@ -5,10 +6,42 @@
                 <a href="news.php?view=article&id={article.ARTICLE_ID}"><img src="images/news/thumbnails/{article.ARTICLE_ID}.jpg"></a>
             </div>
             <div class="news-teaser">
-                <h3><!-- IF article.ARCHIVE -->{article.CATEGORY}: <!-- ENDIF --><a href="news.php?view=article&id={article.ARTICLE_ID}">{article.TITLE}</a></h3>
+                <h3><!-- IF article.ARCHIVE -->{article.CATEGORY}: <!-- ENDIF --><!-- IF article.DUE_DATE != '' -->{article.DUE_DATE}<!-- ENDIF --><a href="news.php?view=article&id={article.ARTICLE_ID}">{article.TITLE}</a></h3>
                 <p>{article.CONTENT}... <a href="news.php?view=article&id={article.ARTICLE_ID}">weiterlesen</a></p>
             </div>
             <div class="clear"></div>
         </div>
         <!-- END article -->
 </div>
+<!-- ELSE -->
+<div id="message-box">
+    <h2>Anstehende Termine</h2>
+        <!-- BEGIN article -->
+        <div class="archive-news">
+            <div class="news-image">
+                <a href="news.php?view=article&id={article.ARTICLE_ID}"><img src="images/news/thumbnails/{article.ARTICLE_ID}.jpg"></a>
+            </div>
+            <div class="news-teaser">
+                <h3>{article.DUE_DATE}: <a href="news.php?view=article&id={article.ARTICLE_ID}">{article.TITLE}</a></h3>
+                <p>{article.CONTENT}... <a href="news.php?view=article&id={article.ARTICLE_ID}">weiterlesen</a></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!-- END article -->
+</div>
+<div id="message-box">
+    <h2>Vergangene Termine</h2>
+        <!-- BEGIN past -->
+        <div class="archive-news">
+            <div class="news-image">
+                <a href="news.php?view=article&id={past.ARTICLE_ID}"><img src="images/news/thumbnails/{past.ARTICLE_ID}.jpg"></a>
+            </div>
+            <div class="news-teaser">
+                <h3>{past.DUE_DATE}: <a href="news.php?view=article&id={past.ARTICLE_ID}">{past.TITLE}</a></h3>
+                <p>{past.CONTENT}... <a href="news.php?view=article&id={past.ARTICLE_ID}">weiterlesen</a></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!-- END past -->
+</div>
+<!-- ENDIF -->

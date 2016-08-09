@@ -5,7 +5,7 @@ $breadcrumpName = 'News';
 $breadcrumpLink = append_sid("{$phpbb_root_path}news.$phpEx" . '?list=overview');
 
 // get all the Articles
-$articles = getAllArticles();
+$articles = getAllArticles($isMember);
 
 foreach($articles as $article) {
     $template->assign_block_vars('article', array(

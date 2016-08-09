@@ -23,6 +23,7 @@ if($id == 'new') {
     
 } else {
     $article = getArticleById($id);
+    $pageTitle = 'News bearbeiten: ' . $article['title'];
     
     $template->assign_vars(array(
         'DATE'          => date("Y-m-d H:i:s"),

@@ -23,12 +23,19 @@ if($request->is_set_post('submit')) {
 $comment = html_entity_decode($db->sql_escape($request->variable('description', '')));
 $comment = makeLinks($comment);
 
+$dueDate = $request->variable('dueDate', date("Y-m-d H:i:s"));
+$dueDate = substr($dueDate, 0, 24);
+$dueDate = strtotime($dueDate);
+$dueDate = date("Y-m-d H:i:s", $dueDate);
+
 $sql_arr = array(
         'title'         =>  html_entity_decode($db->sql_escape($request->variable('title', ''))),
         'content'       =>  $comment,
         'author'        =>  $db->sql_escape($request->variable('author', '')),
         'postdate'      =>  $db->sql_escape($request->variable('date', date("Y-m-d"))),
-        'category'      =>  $request->variable('category', ''),
+        'category'      =>  1,
+        'eventCategory' =>  $request->variable('category', ''),
+        'dueDate'       =>  $dueDate,
     );
 
 if($request->variable('mode', '') == 'new') {

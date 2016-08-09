@@ -14,4 +14,7 @@ elseif($mode == 'archive') {
 elseif($mode == 'shouts') {
     include 'news/includes/listShouts.php';
 }
+elseif($mode == 'events') {
+    include 'news/includes/listEvents.php';
+}
 

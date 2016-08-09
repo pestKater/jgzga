@@ -1,4 +1,10 @@
 <?php
+$intern = array(
+        1,
+        3,
+        4,
+    );
+
 function canUserAdd($userId) {
     global $db;
     
@@ -49,11 +55,16 @@ function getAllEventCategories() {
     return $data;
 }
 
-function getFeaturedArticles() {
+function getFeaturedArticles($isMember) {
     global $db;
+    global $intern;
     $data = array();
     
-    $sql = "SELECT id, title, content FROM phpbb_news_articles ORDER BY id DESC LIMIT 1";
+    if($isMember) {
+        $sql = "SELECT id, title, content FROM phpbb_news_articles ORDER BY id DESC LIMIT 1";
+    } else {
+        $sql = "SELECT id, title, content FROM phpbb_news_articles WHERE " . $db->sql_in_set('eventCategory', $intern, true) . " ORDER BY id DESC LIMIT 1";
+    }
     $result = $db->sql_query($sql);
     
     while($row = $db->sql_fetchrow($result)) {
@@ -61,22 +72,26 @@ function getFeaturedArticles() {
         $data[$row['id']]['title'] = $row['title'];
         $data[$row['id']]['content'] = $row['content'];
     }
-    
     return $data;
 }
 
-function getOverviewArticles() {
+function getOverviewArticles($isMember) {
     global $db;
+    global $intern;
     $data = array();
     
-    $sql = "SELECT id, title, content, category FROM phpbb_news_articles ORDER BY id DESC LIMIT 5 OFFSET 1";
+    if($isMember) {
+        $sql = "SELECT id, title, content, category FROM phpbb_news_articles ORDER BY id DESC LIMIT 5 OFFSET 1";
+    } else {
+        $sql = "SELECT id, title, content, category FROM phpbb_news_articles WHERE " . $db->sql_in_set('eventCategory', $intern, true) . " OR eventCategory IS NULL ORDER BY id DESC LIMIT 5 OFFSET 1";
+    }
     $result = $db->sql_query($sql);
     
     while($row = $db->sql_fetchrow($result)){
         $data[$row['id']]['id'] = $row['id'];
         $data[$row['id']]['title'] = $row['title'];
         $data[$row['id']]['content'] = $row['content'];
-        $data[$row['id']]['category'] = $row['category'];
+        $data[$row['id']]['category'] = $row['category'];    
     }
     
     return $data;
@@ -84,7 +99,7 @@ function getOverviewArticles() {
 
 function getArticleById($id) {
     global $db;
-    $sql = "SELECT id, title, content, category, author, postdate FROM phpbb_news_articles WHERE id = " . $id;
+    $sql = "SELECT id, title, content, category, author, postdate, eventCategory, dueDate FROM phpbb_news_articles WHERE id = " . $id;
     $result = $db->sql_query($sql);
     
     return $db->sql_fetchrow($result);
@@ -121,27 +136,40 @@ function getRankName($rankId) {
     return $row['rank_title'];
 }
 
-function getAllArticlesById($articleId) {
+function getAllArticlesById($articleId, $isMember) {
     global $db;
     $data = array();
     
-    $sql = 'SELECT id, title, content FROM phpbb_news_articles WHERE category = ' . $articleId . ' ORDER BY id DESC';
+    $sql = 'SELECT id, title, content, eventCategory FROM phpbb_news_articles WHERE category = ' . $articleId . ' ORDER BY id DESC';
     $result = $db->sql_query($sql);
     
     while($row = $db->sql_fetchrow($result)) {
-        $data[$row['id']]['id'] = $row['id'];
-        $data[$row['id']]['title'] = $row['title'];
-        $data[$row['id']]['content'] = $row['content'];
+        if($row['eventCategory'] == 1 || $row['eventCategory'] == 3 || $row['eventCategory'] == 4) {
+            if($ismember) {
+                $data[$row['id']]['id'] = $row['id'];
+                $data[$row['id']]['title'] = $row['title'];
+                $data[$row['id']]['content'] = $row['content'];
+            }
+        } else {
+            $data[$row['id']]['id'] = $row['id'];
+            $data[$row['id']]['title'] = $row['title'];
+            $data[$row['id']]['content'] = $row['content'];
+        }
     }
     
     return $data;
 }
 
-function getAllArticles() {
+function getAllArticles($isMember) {
     global $db;
+    global $intern;
     $data = array();
     
-    $sql = 'SELECT id, title, content, category FROM phpbb_news_articles ORDER BY id DESC';
+    if($isMember) {
+        $sql = 'SELECT id, title, content, category FROM phpbb_news_articles ORDER BY id DESC';
+    } else {
+        $sql = 'SELECT id, title, content, category FROM phpbb_news_articles WHERE ' . $db->sql_in_set('eventCategory', $intern, true) . ' OR eventCategory IS NULL ORDER BY id DESC';
+    }
     $result = $db->sql_query($sql);
     
     while($row = $db->sql_fetchrow($result)) {
@@ -190,6 +218,7 @@ function getAllShouts() {
 
 function isMember($userId) {
     global $db;
+    global $intern;
     
     $sql = 'SELECT count(*) AS count FROM '.USER_GROUP_TABLE.' WHERE user_id = ' . $userId . ' AND group_id = 8';
     $result = $db->sql_query($sql);
@@ -201,4 +230,133 @@ function isMember($userId) {
     
     return false;
     
+}
+
+function getEventById($id) {
+    global $db;
+    $sql = "SELECT id, title, content, eventCategory, author, postdate, dueDate FROM phpbb_news_articles WHERE id = " . $id;
+    $result = $db->sql_query($sql);
+    
+    return $db->sql_fetchrow($result);
+}
+
+function getUpcomingEvents($isMember) {
+    global $db;
+    global $intern;
+    $data = array();
+    
+    if($isMember) {
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND dueDate >= NOW() ORDER BY id ASC LIMIT 3';
+    } else {
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND ' . $db->sql_in_set('eventCategory', $intern, true) . ' AND dueDate >= NOW() ORDER BY id ASC LIMIT 3';
+    }
+    $result = $db->sql_query($sql);
+    
+    while($row = $db->sql_fetchrow($result)) {
+        if($row['eventCategory'] == 1 || $row['eventCategory'] == 3 || $row['eventCategory'] == 4) {
+            if($isMember) {
+                $data[$row['id']]['id'] = $row['id'];
+                $data[$row['id']]['author'] = $row['author'];
+                $data[$row['id']]['title'] = $row['title'];
+                $data[$row['id']]['content'] = $row['content'];
+                $data[$row['id']]['eventCategory'] = $row['eventCategory'];
+                $data[$row['id']]['dueDate'] = $row['dueDate'];
+            }
+        } else {
+            $data[$row['id']]['id'] = $row['id'];
+            $data[$row['id']]['author'] = $row['author'];
+            $data[$row['id']]['title'] = $row['title'];
+            $data[$row['id']]['content'] = $row['content'];
+            $data[$row['id']]['eventCategory'] = $row['eventCategory'];
+            $data[$row['id']]['dueDate'] = $row['dueDate'];
+        }
+    }
+    
+    return $data;
+}
+
+function getEventCategory($id) {
+    global $db;
+    $sql = "SELECT name FROM phpbb_events_categories WHERE id = " . $id;
+    $result = $db->sql_query($sql);
+    $result = $db->sql_fetchrow($result);
+    
+    return $result['name'];
+}
+
+function getAllUpcomingEvents($isMember) {
+    global $db;
+    global $intern;
+    $data = array();
+    
+    if($isMember) {
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND dueDate >= NOW() ORDER BY id ASC';
+    } else {
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND ' . $db->sql_in_set('eventCategory', $intern, true) . ' AND dueDate >= NOW() ORDER BY id ASC';
+    }
+    $result = $db->sql_query($sql);
+    
+    while($row = $db->sql_fetchrow($result)) {
+        
+        $data[$row['id']]['id'] = $row['id'];
+        $data[$row['id']]['author'] = $row['author'];
+        $data[$row['id']]['title'] = $row['title'];
+        $data[$row['id']]['content'] = $row['content'];
+        $data[$row['id']]['eventCategory'] = $row['eventCategory'];
+        $data[$row['id']]['dueDate'] = $row['dueDate'];
+    }
+    
+    return $data;
+}
+
+function getAllPastEvents($isMember) {
+    global $db;
+    global $intern;
+    $data = array();
+
+    if($isMember) {
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND dueDate <= NOW() ORDER BY id ASC';
+    } else {
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND ' . $db->sql_in_set('eventCategory', $intern, true) . ' AND dueDate <= NOW() ORDER BY id ASC';
+    }
+    $result = $db->sql_query($sql);
+    
+    while($row = $db->sql_fetchrow($result)) {
+        if($row['eventCategory'] == 1 || $row['eventCategory'] == 3 || $row['eventCategory'] == 4) {
+            if($isMember) {
+                $data[$row['id']]['id'] = $row['id'];
+                $data[$row['id']]['author'] = $row['author'];
+                $data[$row['id']]['title'] = $row['title'];
+                $data[$row['id']]['content'] = $row['content'];
+                $data[$row['id']]['eventCategory'] = $row['eventCategory'];
+                $data[$row['id']]['dueDate'] = $row['dueDate'];
+            }
+        } else {
+            $data[$row['id']]['id'] = $row['id'];
+            $data[$row['id']]['author'] = $row['author'];
+            $data[$row['id']]['title'] = $row['title'];
+            $data[$row['id']]['content'] = $row['content'];
+            $data[$row['id']]['eventCategory'] = $row['eventCategory'];
+            $data[$row['id']]['dueDate'] = $row['dueDate'];
+        }
+    }
+    
+    return $data;
+}
+
+function makeLinks($str, $target='_blank')
+{
+    if ($target)
+    {
+        $target = ' target="'.$target.'"';
+    }
+    else
+    {
+        $target = '';
+    }
+    // find and replace link
+    $str = preg_replace('@((https?://)?([-\w]+\.[-\w\.]+)+\w(:\d+)?(/([-\w/_\.]*(\?\S+)?)?)*)@', '<a href="$1" '.$target.'>$1</a>', $str);
+    // add "http://" if not set
+    $str = preg_replace('/<a\s[^>]*href\s*=\s*"((?!https?:\/\/)[^"]*)"[^>]*>/i', '<a href="http://$1" '.$target.'>', $str);
+    return $str;
 }

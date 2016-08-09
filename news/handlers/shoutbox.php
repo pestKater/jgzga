@@ -17,8 +17,11 @@ if($request->is_set_post('submit')) {
     exit;
 }
 
+$comment = $db->sql_escape($request->variable('text', ''));
+$comment = makeLinks($comment);
+
 $sql_arr = array(
-        'comment'       =>  $db->sql_escape($request->variable('text', '')),
+        'comment'       =>  $comment,
         'author'        =>  $db->sql_escape($request->variable('author', '')),
         'date'          =>  date("Y-m-d H:i:s"),
     );

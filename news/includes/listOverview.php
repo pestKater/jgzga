@@ -6,7 +6,7 @@ $breadcrumpName = 'News';
 $breadcrumpLink = append_sid("{$phpbb_root_path}news.$phpEx" . '?list=overview');
 
 // get the featured articles
-$featuredArticles = getFeaturedArticles();
+$featuredArticles = getFeaturedArticles($isMember);
 
 foreach($featuredArticles as $singleFeatured) {
     $template->assign_block_vars('featured', array(
@@ -17,7 +17,7 @@ foreach($featuredArticles as $singleFeatured) {
 }
 
 // get the other articles
-$otherArticles = getOverviewArticles();
+$otherArticles = getOverviewArticles($isMember);
 
 foreach($otherArticles as $singleArticle) {
     
@@ -32,6 +32,20 @@ foreach($otherArticles as $singleArticle) {
 }
 // get the next events
 
+$events = getUpcomingEvents($isMember);
+
+foreach ($events as $event) {
+    $category = getEventCategory($event['eventCategory']);
+    
+    $template->assign_block_vars('events', array(
+        'EVENT_ID'        => $event['id'],
+        'TITLE'             => $event['title'],
+        'CONTENT'   =>  substr($event['content'], 0, 190),
+        'CATEGORY'  => $category,
+        'DUE_DATE'  => date('d.m.Y \u\m H:i',strtotime($event['dueDate'])),
+        
+    ));
+}
 
 // get the last shouts
 $shouts = getShoutsOverview();

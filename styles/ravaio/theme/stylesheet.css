@@ -265,6 +265,7 @@
     text-align: justify;
     background-color:rgba(0,0,0,0.5);
     font-size:1.2em;
+    width:100%;
 }
 
 .overview-widget {

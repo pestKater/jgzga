@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="{T_THEME_PATH}/pikaday.css">
+<div id="message-box">
+    <!-- IF CAN_ADD -->
+    <form enctype="multipart/form-data" method="POST" class="gallery-form" id="gallery-form" accept-charset="UTF-8" action="news/handlers/editEvent.php">
+        <!-- IF MODE == 'edit' -->
+            <div class="picture">
+                <img src="images/news/{ARTICLE_ID}.jpg">
+                <input type="hidden" name="articleid" value="{ARTICLE_ID}">
+            </div>
+        <!-- ENDIF -->
+        <input placeholder="Titel (Pflichtangabe)" class="input" type="text" name="title" id="title" size="45" tabindex="2" value="{TITLE}" required>
+        
+        <input type="text" id="datepicker" placeholder="Datum" name="dueDate" value="{DUE_DATE}" class="input">
+        
+        <textarea class="input" name="description" id="description" rows="15" cols="76" tabindex="4" placeholder="Dein Beitrag">{DESCRIPTION}</textarea> 
+        <select name="category" class="folderSelect">
+            <!-- BEGIN categories -->
+            <!-- IF categories.ID == ARTICLE_ID -->
+                <option value="{categories.CAT_ID}" selected>{categories.NAME}</option>
+            <!-- ELSE -->
+                <option value="{categories.CAT_ID}">{categories.NAME}</option>
+            <!-- ENDIF -->
+            <!-- END categories -->
+        </select>
+        <!-- IF MODE == 'new' -->
+        <label for="fileToUpload" id="fileLabel" class="button"><span>Bild auswählen (Pflichtangabe)</span></label>
+        <input id="fileToUpload" type="file" class="inputFile" name="fileToUpload" required>
+        <script>
+            var inputs = document.querySelectorAll( '.inputFile' );
+            Array.prototype.forEach.call( inputs, function( input )
+            {
+                var label   = document.getElementById('fileLabel');
+                labelVal    = label.innerHTML;
+
+                input.addEventListener( 'change', function( e )
+                {                        
+                    var fileName = '';
+                    if( this.files && this.files.length > 1 )
+                            fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+                    else
+                            fileName = e.target.value.split( '\\' ).pop();
+
+                    if( fileName )
+                            label.querySelector( 'span' ).innerHTML = fileName;
+                    else
+                            label.innerHTML = labelVal;
+                });
+            });
+        </script>
+        <!-- ENDIF -->
+        <input type="hidden" name="date" id="date" value="{DATE}">
+        <input type="hidden" name="author" id="author" value="{AUTHOR}">
+        <input type="hidden" name="mode" id="mode" value="{MODE}">
+        <input type="submit" name="submit" value="Absenden" class="button">
+        <!-- IF MODE == 'edit' -->
+            <input type="submit" name="delete" value="Post löschen" class="button-flat">
+        <!-- ENDIF -->
+    </form>
+    
+    <script>
+        $('form').submit( function(ev) {
+            var textarea = $('form textarea');
+            var text = textarea.val();
+            
+            text = text.replace(/ä/g,"&auml;");
+            text = text.replace(/ö/g, '&ouml;');
+            text = text.replace(/ü/g, '&uuml;');
+            text = text.replace(/Ä/g, '&Auml;');
+            text = text.replace(/Ö/g, '&Ouml;');
+            text = text.replace(/Ü/g, '&Uuml;');
+            text = text.replace(/ß/g, '&szlig;');
+            
+            textarea.val(text);
+            
+            var title = $('#title');
+            var text = title.val();
+            
+            text = text.replace(/ä/g,"&auml;");
+            text = text.replace(/ö/g, '&ouml;');
+            text = text.replace(/ü/g, '&uuml;');
+            text = text.replace(/Ä/g, '&Auml;');
+            text = text.replace(/Ö/g, '&Ouml;');
+            text = text.replace(/Ü/g, '&Uuml;');
+            text = text.replace(/ß/g, '&szlig;');
+            
+            title.val(text);
+        });
+        
+    </script>
+    <!-- ELSE -->
+        <p>Du hast keine Berechtigung diese Seite anzusehen.</p>
+    <!-- ENDIF -->
+</div>
+
+<script src="{T_THEME_PATH}/pikaday.js"></script>
+<script>
+    var picker = new Pikaday({ 
+        field: document.getElementById('datepicker'),
+        firstDay: 1,
+        showTime: true,
+        use24hour: true
+    });
+</script>

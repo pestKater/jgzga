@@ -96,5 +96,5 @@ if($request->variable('mode', '') == 'edit') {
     }
 }
 
-header('Location: ' . $phpbb_root_path. 'gallery.' . $phpEx . '?list=overview');
+header('Location: ' . $phpbb_root_path. 'news.' . $phpEx . '?view=article&id='.$pictureId);
 ?>

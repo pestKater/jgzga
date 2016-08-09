@@ -359,7 +359,10 @@
     float:left;
 }
 .media-slider p {
-    padding-top:15px;
+    padding-top:13px;
+}
+.media-slider a:hover {
+    color:#e8e8e8;
 }
 .media-slider-youtube {
     position:absolute;

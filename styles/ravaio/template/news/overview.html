@@ -1,0 +1,75 @@
+<div id="message-box"> 
+        <ul class="slides">
+            <!-- BEGIN featured -->
+            <li class="mySlides">
+                <a href="news.php?view=article&id={featured.ID}">
+                    <img src="images/news/{featured.ID}.jpg">
+                </a>
+                <div class="news-information">
+                    <h3><a href="news.php?view=article&id={featured.ID}">{featured.TITLE}</a></h3>
+                    <p>{featured.CONTENT}... <a href="news.php?view=article&id={featured.ID}">weiterlesen</a></p>
+                </div>
+            </li>
+             <!-- END featured -->
+        </ul> 
+    
+    <div class="overview-widget">
+        <h2><a href="news.php?list=archive">Mehr Neuigkeiten</a></h2>
+        <!-- BEGIN articles -->
+        <div class="singleNews">
+            <div class="news-image">
+                <a href="news.php?view=article&id={articles.ID}"><img src="images/news/thumbnails/{articles.ID}.jpg"></a>
+            </div>
+            <div class="news-teaser">
+                <h3>{articles.CATEGORY}: <a href="news.php?view=article&id={articles.ID}">{articles.TITLE}</a></h3>
+                <p>{articles.CONTENT}... <a href="news.php?view=article&id={articles.ID}">weiterlesen</a></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!-- END articles -->
+    </div>
+    <div class="overview-widget">
+        <h2><a href="news.php?list=events">Anstehende Termine</a></h2>
+        <!-- BEGIN events -->
+        <div class="singleNews">
+            <div class="news-image">
+                <a href="news.php?view=event&id={events.EVENT_ID}"><img src="images/news/thumbnails/{events.EVENT_ID}.jpg"></a>
+            </div>
+            <div class="news-teaser">
+                <p>{events.DUE_DATE} <a href="news.php?view=event&id={events.EVENT_ID}">zum Termin</a></p>
+                <h3>{events.CATEGORY}: <a href="news.php?view=event&id={events.EVENT_ID}">{events.TITLE}</a></h3>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!-- END events -->
+        <h2><a href="news.php?list=shouts">Schreischachtel</a></h2>
+        <!-- BEGIN shouts -->
+        <div class="shout-overall">
+            <div class="shout-avatar">
+                <a href="memberlist.php?mode=viewprofile&u={shouts.AUTHOR_ID}">
+                    <!-- IF not shouts.AVATAR == '' -->
+                    <img src="./download/file.php?avatar={shouts.AVATAR}">
+                    <!-- ELSE-->
+                    <span class="avatar-none">{shouts.AUTHOR_NAME}</span>
+                    <!-- ENDIF -->
+                </a>
+            </div>
+            <div class="shout">
+                <p><a href="memberlist.php?mode=viewprofile&u={shouts.AUTHOR_ID}">{shouts.AUTHOR_NAME}</a> schrieb {shouts.DATE}:</p>
+                <p class="shout-text">{shouts.SHOUT}</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!-- END shouts -->
+        <!-- IF S_USER_LOGGED_IN -->
+        <div class="shout-form">
+            <form method="POST" action="news/handlers/shoutbox.php">
+                <textarea class="shout-input" name="text" placeholder="Wos schreist?"></textarea> 
+                <input type="hidden" name="author" value="{USER_ID}">
+                <input type="submit" value="Absenden" class="button" name="submit">
+            </form>
+        </div>
+        <!-- ENDIF -->
+    </div>
+    <div class="clear"></div>
+</div>

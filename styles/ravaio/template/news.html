@@ -1,0 +1,37 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- INCLUDE news/header.html -->
+
+<div class="background-main">
+    <div class="chunk">
+        <div class="panel">
+            <div class="inner">      
+                <!-- IF SITE == 'overview' -->
+                    <!-- INCLUDE news/overview.html -->
+                <!-- ENDIF -->
+                <!-- IF SITE == 'edit' -->
+                    <!-- INCLUDE news/edit.html -->
+                <!-- ENDIF -->
+                <!-- IF SITE == 'viewArticle' -->
+                    <!-- INCLUDE news/viewArticle.html -->
+                <!-- ENDIF -->
+                <!-- IF SITE == 'archive' -->
+                    <!-- INCLUDE news/listArticles.html -->
+                <!-- ENDIF -->
+                <!-- IF SITE == 'shoutbox' -->
+                    <!-- INCLUDE news/listShouts.html -->
+                <!-- ENDIF -->
+                <!-- IF SITE == 'editEvent' -->
+                    <!-- INCLUDE news/editEvent.html -->
+                <!-- ENDIF -->
+                <!-- IF SITE == 'viewEvent' -->
+                    <!-- INCLUDE news/viewEvent.html -->
+                <!-- ENDIF -->
+            </div>
+        </div>        
+    </div>
+</div>
+
+
+<!-- INCLUDE jumpbox.html -->
+<!-- INCLUDE overall_footer.html -->

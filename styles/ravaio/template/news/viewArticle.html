@@ -1,0 +1,40 @@
+<div id="message-box">
+    <!-- IF AVAILIBLE -->
+    <div class="picture"><img src="images/news/{ARTICLE_ID}.jpg"></div>
+    <div class="pic-infos">
+        <div class="pic-desc"><p>{DESCRIPTION}</p></div>
+        <div class="pic-poster">
+            <div class="avatar-container">
+                <a href="memberlist.php?mode=viewprofile&u={USERID}" class="avatar">
+                    <!-- IF not AVATAR == '' -->
+                    <img class="avatar" src="./download/file.php?avatar={AVATAR}">
+                    <!-- ELSE-->
+                    <span class="avatar-none">{USER}</span>
+                    <!-- ENDIF -->
+                </a>
+            </div>
+            <div class="userinfo">
+
+                <ul class="pic-info-list">
+                    <li class="username"><a href="memberlist.php?mode=viewprofile&u={USERID}">{USER}</a></li>
+                    <!-- IF not RANK == '' -->
+                        <li class="userrank">{RANK}</li>
+                    <!-- ENDIF -->
+                    <li><span>Datum:</span> {DATE}</li>
+
+                    <li><span>Kategorie:</span> 
+                        <!-- IF FOLDER_ID == 0 -->
+                            Keine
+                        <!-- ELSE -->
+                            <a href="news.php?list=category&id={FOLDER_ID}">{FOLDERNAME}</a>
+                        <!-- ENDIF -->
+                    </li>                        
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!-- ELSE -->
+    <p>Dieses Bild existiert nicht.</p>
+    <!-- ENDIF -->
+</div>

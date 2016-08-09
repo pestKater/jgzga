@@ -11,7 +11,7 @@ foreach($articles as $article) {
     $template->assign_block_vars('article', array(
         'ARTICLE_ID'    => $article['id'],
         'TITLE'         => $article['title'],
-        'CONTENT'       => substr($article['content'], 0, 350),
+        'CONTENT'       => str_replace('\n', ' ', substr($article['content'], 0, 350)),
         'ARCHIVE'       => true,
         'CATEGORY'      => getCategoryName($article['category']),
     ));

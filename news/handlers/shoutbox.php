@@ -17,7 +17,7 @@ if($request->is_set_post('submit')) {
     exit;
 }
 
-$comment = $db->sql_escape($request->variable('text', ''));
+$comment = html_entity_decode($db->sql_escape($request->variable('text', '')));
 $comment = makeLinks($comment);
 
 $sql_arr = array(

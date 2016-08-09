@@ -2,6 +2,11 @@
 	Ravaio Theme Stylesheet Made by Gramziu
 */
 
+.customsite p{
+	font-size: 1.2em;
+	line-height: 1.7;
+}
+
 .dropdown-mega {
 	background-color:#222222;
 	border:1px solid white;
@@ -391,6 +396,20 @@
 .media-slider-facebook:hover {
     right:0;
     background-color: rgba(0,0,0,0.5);
+}
+
+.customsite {
+    font-size:1.2em;
+}
+.customlink {
+    font-size: 1.2em;
+}
+.customlink p {
+    padding:10px;
+    background-color:#2C3940;
+    color:#e8e8e8;
+    margin-top:20px;
+    margin-bottom:20px;
 }
 
 *,

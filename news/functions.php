@@ -10,6 +10,7 @@ function canUserAdd($userId) {
     
     $groups = array(
         5,
+        15,
     );
     $sql = "SELECT count(*) AS count FROM " . USER_GROUP_TABLE . " WHERE user_id = " . $userId . " AND " . $db->sql_in_set('group_id', $groups);
     $result = $db->sql_query($sql);

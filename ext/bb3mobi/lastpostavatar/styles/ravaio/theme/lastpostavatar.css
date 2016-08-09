@@ -27,6 +27,8 @@
 	overflow: hidden;
 	position: relative;
 	z-index: 2;
+        height:30px;
+        width:30px;
 }
 
 .fora-bg .lastpostavatar img {

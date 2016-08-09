@@ -231,6 +231,13 @@ $vars = array('page_title');
 extract($phpbb_dispatcher->trigger_event('core.index_modify_page_title', compact($vars)));
 
 // Output page
+$page = request_var('page', 'home');
+
+if($page != 'forum') {
+    header('Location: ' . $phpbb_root_path. 'news.' . $phpEx);
+    exit;
+}
+
 page_header($page_title, true);
 
 $template->set_filenames(array(

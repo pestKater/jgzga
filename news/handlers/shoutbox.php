@@ -19,6 +19,7 @@ if($request->is_set_post('submit')) {
 
 $comment = html_entity_decode($db->sql_escape($request->variable('text', '')));
 $comment = makeLinks($comment);
+$comment = str_replace(array("\n", "\r"), ' ', $comment);
 
 $sql_arr = array(
         'comment'       =>  $comment,

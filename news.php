@@ -44,7 +44,7 @@
     
     // Rendering stuff
     page_header($pageTitle);
-    
+
     $template->assign_vars(array(
         'PAGETITLE'         => $pageTitle,
         'CAN_ADD'           => $canAddNews,

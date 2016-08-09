@@ -95,6 +95,9 @@ function getOverviewArticles($isMember) {
         $data[$row['id']]['category'] = $row['category'];    
     }
     
+    var_dump($data);
+    die;
+    
     return $data;
 }
 

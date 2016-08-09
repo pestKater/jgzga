@@ -15,8 +15,6 @@ $content 	= html_entity_decode($db->sql_escape($request->variable('content', '')
 $pageid 	= $request->variable('pageid', '');
 $newsite        = true;
 
-$content = makeLinks($content);
-
 // 2. Checken ob Datensatz vorhanden
 $sql = "SELECT count(*) AS count FROM phpbb_customsite WHERE id=" . $pageid;
 $result = $db->sql_query($sql);

@@ -9,7 +9,7 @@ if($id == 'new') {
     $site = getCustomsite($id);
     
     $pageTitle = $site['title'];
-    $content = $site['content'];
+    $content = str_replace('\n', "\r\n" , $site['content']);
 }
     
     

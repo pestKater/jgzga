@@ -11,5 +11,5 @@ $site = getCustomsite($id);
 
 $page = 'view';
 $pageTitle = $site['title'];
-$content = str_replace('\n', '', $site['content']);
+$content = str_replace('\n', ' ', $site['content']);
 $pageLink = $phpbb_root_path . 'custom.' . $phpEx .'?page=' . $id;

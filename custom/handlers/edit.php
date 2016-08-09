@@ -1,18 +1,21 @@
 <?php
 define('IN_PHPBB', true);
-$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../';
+$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../../';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
+include($phpbb_root_path . 'custom/functions.' . $phpEx);
 
 // 1. Daten entgegen nehmen
 if(!$request->is_set_post('submit')) {
     exit;
 }
 
-$title 		= $request->variable('title', '');
-$content 	= $request->variable('content', '');
+$title 		= html_entity_decode($db->sql_escape($request->variable('title', '')));
+$content 	= html_entity_decode($db->sql_escape($request->variable('content', '')));
 $pageid 	= $request->variable('pageid', '');
-$newsite	= true;
+$newsite        = true;
+
+$content = makeLinks($content);
 
 // 2. Checken ob Datensatz vorhanden
 $sql = "SELECT count(*) AS count FROM phpbb_customsite WHERE id=" . $pageid;
@@ -48,6 +51,6 @@ if($newsite) {
 	$pageid = $row['id'];
 }
 
-header('Location: http://localhost/jgzga/custom.php?page='.$pageid);
+header('Location: ' . $phpbb_root_path . 'custom.' . $phpEx . '?page='.$pageid);
 
 ?>

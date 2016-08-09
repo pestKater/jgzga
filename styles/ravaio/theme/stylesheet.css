@@ -398,6 +398,20 @@
     background-color: rgba(0,0,0,0.5);
 }
 
+.customsite {
+    font-size:1.2em;
+}
+.customlink {
+    font-size: 1.2em;
+}
+.customlink p {
+    padding:10px;
+    background-color:#2C3940;
+    color:#e8e8e8;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
 *,
 *:before,
 *:after {

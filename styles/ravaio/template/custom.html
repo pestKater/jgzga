@@ -1,37 +1,18 @@
 <!-- INCLUDE overall_header.html -->
 
-<div id="sub-header">
-    <div class="chunk">
-        <div class="sub-header-title">
-            <h2 class="titlespace">{PAGETITLE}</h2>
-        </div>
-    </div>
-</div>
+<!-- INCLUDE custom/header.html -->
 
 <div class="background-main">
     <div class="chunk">
         <div class="panel">
             <div class="inner">                
-                <div id="message-box" class="customsite">
-					<p>{PAGECONTENT}</p>
-				</div>
-			</div>
-		</div>
-		<!-- IF ISADMIN -->
-		<div class="panel">
-            <div class="inner">                
-                <div id="message-box">
-					<h4>Seite bearbeiten:</h4>
-					<form method="POST" action="custom/edit.php">
-                        <input placeholder="Titel" class="input" type="text" name="title" id="title" size="45" tabindex="2" value="{PAGETITLE}">
-                        <textarea class="input" name="content" id="content" rows="15" cols="76" tabindex="4" placeholder="Inhalt">{PAGECONTENT}</textarea> 
-						<input type="hidden" name="pageid" value="{PAGEID}">
-                        <input type="submit" name="submit" value="Absenden" class="button">
-                    </form>
-				</div>
-			</div>
-		</div>
-		<!-- ENDIF -->
+                <!-- IF PAGE == 'view' -->
+                    <!-- INCLUDE custom/view.html -->
+                <!-- ELSE -->
+                    <!-- INCLUDE custom/edit.html -->
+                <!-- ENDIF -->
+            </div>
+        </div>	
     </div>
 </div>
 

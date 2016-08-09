@@ -86,6 +86,8 @@ function getOverviewArticles($isMember) {
     } else {
         $sql = "SELECT id, title, content, category FROM phpbb_news_articles WHERE " . $db->sql_in_set('eventCategory', $intern, true) . " OR eventCategory IS NULL ORDER BY id DESC LIMIT 5 OFFSET 1";
     }
+    var_dump($sql);
+    die;
     $result = $db->sql_query($sql);
     
     while($row = $db->sql_fetchrow($result)){
@@ -94,9 +96,6 @@ function getOverviewArticles($isMember) {
         $data[$row['id']]['content'] = $row['content'];
         $data[$row['id']]['category'] = $row['category'];    
     }
-    
-    var_dump($data);
-    die;
     
     return $data;
 }

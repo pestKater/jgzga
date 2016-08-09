@@ -64,7 +64,7 @@ function getFeaturedArticles($isMember) {
     if($isMember) {
         $sql = "SELECT id, title, content FROM phpbb_news_articles ORDER BY id DESC LIMIT 1";
     } else {
-        $sql = "SELECT id, title, content FROM phpbb_news_articles WHERE " . $db->sql_in_set('eventCategory', $intern, true) . " ORDER BY id DESC LIMIT 1";
+        $sql = "SELECT id, title, content FROM phpbb_news_articles WHERE " . $db->sql_in_set('eventCategory', $intern, true) . " OR eventCategory IS NULL ORDER BY id DESC LIMIT 1";
     }
     $result = $db->sql_query($sql);
     

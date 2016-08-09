@@ -5,6 +5,11 @@ $site       = 'overview';
 $breadcrumpName = 'News';
 $breadcrumpLink = append_sid("{$phpbb_root_path}news.$phpEx" . '?list=overview');
 
+$template->assign_vars(array(
+    'RA_SITE_DESC' => true,
+    'RA_ENABLE' => true,
+));
+
 // get the featured articles
 $featuredArticles = getFeaturedArticles($isMember);
 

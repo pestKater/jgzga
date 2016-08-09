@@ -52,12 +52,12 @@
         'IS_MEMBER'         => $isMember,
     ));
     
-    
-    
-    $template->assign_block_vars('navlinks', array(
-        'FORUM_NAME'    => $breadcrumpName,
-        'U_VIEW_FORUM'  => $breadcrumpLink,
-    ));
+    if($site != 'overview') {
+        $template->assign_block_vars('navlinks', array(
+            'FORUM_NAME'    => $breadcrumpName,
+            'U_VIEW_FORUM'  => $breadcrumpLink,
+        ));
+    }
     
     // Template laden
     $template->set_filenames(array(

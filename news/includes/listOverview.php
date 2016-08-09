@@ -66,7 +66,7 @@ foreach ($shouts as $shout) {
         'SHOUT_ID'    => $shout['id'],
         'AUTHOR_ID'     => $shout['author'],
         'AUTHOR_NAME'    => $poster['username'],
-        'DATE'    => date("\a\m m.d.y \u\m H:i", strtotime($shout['date'])),
+        'DATE'    => date("\a\m d.m.y \u\m H:i", strtotime($shout['date'])),
         'SHOUT'    => str_replace('\n', '<br>', $shout['comment']),
         'AVATAR'        => $poster['user_avatar'],
     ));

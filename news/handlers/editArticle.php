@@ -57,7 +57,7 @@ if($request->variable('mode', '') == 'new') {
 
     // Neuen Dateipfad definieren
     $new = '/var/www/html/forum/images/news/' . $pictureId . '.jpg';
-    $thumb = '/var/www/html/forum/images/news/tumbnails/' . $pictureId . '.jpg';
+    $thumb = '/var/www/html/forum/images/news/thumbnails/' . $pictureId . '.jpg';
 
     // Bearbeiten
     $im = new imageLib($tmp);

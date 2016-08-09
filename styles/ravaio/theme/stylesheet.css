@@ -401,6 +401,10 @@
 .customsite {
     font-size:1.2em;
 }
+.customsite p {
+    margin-top:10px;
+    margin-bottom:10px;
+}
 .customlink {
     font-size: 1.2em;
 }

@@ -1229,7 +1229,8 @@ textarea {
 .pagination li + li {
   margin-left: 4.5px;
 }
-.page-jump .dropdown-box {
+.page-jump .dropdown-box,
+.page-jump .dropdown-box2 {
   font-size: 10px;
   left: 0;
   padding-left: 18px;

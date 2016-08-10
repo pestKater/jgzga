@@ -2400,7 +2400,8 @@ a.avatar {
   margin: 6px 18px;
   width: auto;
 }
-.dropdown-box {
+.dropdown-box,
+.dropdown-box2{
   border-radius: 2px;
   display: none;
   font-size: 13px;
@@ -2417,14 +2418,16 @@ a.avatar {
   white-space: nowrap;
   z-index: 3;
 }
-.dropdown-box li {
+.dropdown-box li,
+.dropdown-box2 li {
   clear: both;
   display: block;
   margin: 0;
   padding: 0;
   width: 100%;
 }
-.dropdown-box a {
+.dropdown-box a,
+.dropdown-box2 a {
   display: block;
   line-height: 1;
   margin: 0;
@@ -2432,7 +2435,8 @@ a.avatar {
   -webkit-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
           transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
 }
-.dropdown-box i {
+.dropdown-box i,
+.dropdown-box2 i {
   margin-right: 9px;
 }
 .dropdown-box .separator {
@@ -2583,6 +2587,7 @@ select.dropdown-up + .chosen-container .chosen-drop {
 }
 .open > .dropdown-mega,
 .open > .dropdown-box,
+.open > .dropdown-box2,
 .open > .dropdown-box-big {
   display: block;
 }

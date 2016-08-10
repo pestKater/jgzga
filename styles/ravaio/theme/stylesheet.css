@@ -340,6 +340,11 @@
     width: 50px;
     border-radius: 100%;
 }
+.shout-avatar .avatar-none {
+    height:50px;
+    width:50px;
+    line-height: 50px;
+}
 .shout {
     float:left;
     margin-left:20px;

@@ -303,6 +303,14 @@
     padding-left:20px;
     font-size:1.2em;
 }
+.overview-widget .news-teaser span {
+    font-size:1.2em;
+}
+.overview-widget .gallery-thumb {
+    width: 95px;
+    height:95px;
+    margin-left:20px;
+}
 
 .archive-news {
     width:100%;

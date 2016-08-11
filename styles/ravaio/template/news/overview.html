@@ -81,6 +81,40 @@
         </div>
         <div class="clear"></div>
     </div>
+    <div class="row">
+        <div class="overview-widget">
+            <h2><a href="gallery.php">Die neusten Bilder</a></h2>
+            <!-- BEGIN pictures -->
+                <a href="./gallery.php?view=image&id={pictures.ID}">
+                    <div class="gallery-thumb">
+                        <img src="./images/gallery/thumbnails/{pictures.ID}.jpg">
+                    </div>  
+                </a>
+            <!-- END pictures -->
+        </div>
+        <div class="overview-widget">
+            <h2><a href="search.php?search_id=unreadposts">Die neusten Posts</a></h2>
+            <!-- BEGIN posts -->
+            <div class="singleNews">
+                <div class="shout-avatar">
+                    <a href="memberlist.php?mode=viewprofile&u={posts.AUTHOR_ID}">
+                        <!-- IF not posts.AVATAR == '' -->
+                        <img src="./download/file.php?avatar={posts.AVATAR}">
+                        <!-- ELSE-->
+                        <span class="avatar-none">{posts.AUTHOR_NAME}</span>
+                        <!-- ENDIF -->
+                    </a>
+                </div>
+                <div class="news-teaser">
+                    <span>{posts.POST_DATE}: <a href="{posts.TOPIC_LINK}">{posts.TOPIC_NAME}</a></span>
+                    <p>{posts.POST_TEXT}</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!-- END posts -->
+        </div>
+        <div class="clear"></div>
+    </div>
 </div>
 <script>
 $('form').submit( function(ev) {

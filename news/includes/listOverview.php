@@ -72,3 +72,44 @@ foreach ($shouts as $shout) {
     ));
 }
 
+// get the last pictures
+$pictures = getNewestPictures();
+
+foreach ($pictures as $picture) {
+    $template->assign_block_vars('pictures', array(
+        'ID'    => $picture['id'],
+        'NAME'  => $picture['name'],
+    ));
+}
+
+// get last posts:
+$topics = getLastTopics();
+
+foreach($topics as $topic) {
+    $link       = 'viewtopic.php?f='.$topic['forum_id'].'&p='.$topic['topic_last_post_id'].'#p'.$topic['topic_last_post_id'];
+    $name       = $topic['topic_title'];
+    
+    if(strlen($name) >= 24) {
+        $name = substr($name, 0, 23) . '...';
+    }
+    
+    $post       = getPostText($topic['topic_last_post_id']);
+    
+    $postText   = preg_replace('#\[[^\]]+\]#', '', $post['post_text']);
+    $postText   = str_replace('{SMILIES_PATH}', './images/smilies', $postText);
+    $postText   = substr($postText,0,150);
+    $postDate   = date('d.m.Y \u\m H:i',$post['post_time']);
+    
+    $poster = getUserData($post['poster_id']);
+    
+    $template->assign_block_vars('posts', array(
+        'TOPIC_NAME'    => $name,
+        'TOPIC_LINK'    => $link,
+        'POST_TEXT'     => $postText,
+        'POST_DATE'     => $postDate,
+        'AUTHOR_ID'     => $poster['user_id'],
+        'AVATAR' => $poster['user_avatar'],
+        'AUTHOR_NAME'   => $poster['username'],
+    ));   
+}
+

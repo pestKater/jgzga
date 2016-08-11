@@ -361,3 +361,51 @@ function makeLinks($str, $target='_blank')
     $str = preg_replace('/<a\s[^>]*href\s*=\s*"((?!https?:\/\/)[^"]*)"[^>]*>/i', '<a href="http://$1" '.$target.'>', $str);
     return $str;
 }
+
+function getNewestPictures() {
+    global $db;
+    
+    $sql = 'SELECT id, name FROM phpbb_gallery ORDER BY id DESC LIMIT 16';
+    $result = $db->sql_query($sql);
+    
+    while($row = $db->sql_fetchrow($result)) {
+        $data[$row['id']]['id'] = $row['id'];
+        $data[$row['id']]['name'] = $row['name'];
+    }
+    
+    $db->sql_freeresult($result);
+    
+    return $data;
+}
+
+function getLastTopics() {
+    global $db;
+    global $auth;
+    // Create arrays
+    $topics = array();
+    
+    // Get forums that current user has read rights to.
+    $forums = array_unique(array_keys($auth->acl_getf('f_read', true)));
+    
+    // Get active topics.
+    $sql="SELECT * FROM " . TOPICS_TABLE . " WHERE topic_posts_approved >= '1' AND " . $db->sql_in_set('forum_id', $forums) . " ORDER BY topic_last_post_time DESC LIMIT 5";
+    $result = $db->sql_query($sql);
+    while ($r = $db->sql_fetchrow($result))
+    {
+        $topics[] = $r;
+    }
+   $db->sql_freeresult($result);
+   
+   return $topics;
+}
+
+function getPostText($postId) {
+    global $db;
+    
+    $sql = 'SELECT * FROM ' . POSTS_TABLE . ' WHERE post_id = ' . $postId;
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    return $row;
+}

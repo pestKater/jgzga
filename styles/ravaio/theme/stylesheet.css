@@ -437,6 +437,11 @@
     clear:both;
     display:block;
 }
+.no-posts {
+    font-size: 1.4em;
+    color:grey;
+    font-style: italic;
+}
 
 *,
 *:before,

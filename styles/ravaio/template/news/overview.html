@@ -94,24 +94,33 @@
         </div>
         <div class="overview-widget">
             <h2><a href="search.php?search_id=unreadposts">Die neusten Posts</a></h2>
-            <!-- BEGIN posts -->
-            <div class="singleNews">
-                <div class="shout-avatar">
-                    <a href="memberlist.php?mode=viewprofile&u={posts.AUTHOR_ID}" title="{posts.AUTHOR_NAME}">
-                        <!-- IF not posts.AVATAR == '' -->
-                        <img src="./download/file.php?avatar={posts.AVATAR}">
-                        <!-- ELSE-->
-                        <span class="avatar-none">{posts.AUTHOR_NAME}</span>
-                        <!-- ENDIF -->
-                    </a>
+            <!-- IF NO_POSTS -->
+                <div class="singleNews">
+                    <div class="no-posts">
+                        <span>Es gibt derzeit keine ungelesenen Posts für dich</span>
+                    </div>
+                    <div class="clear"></div>
                 </div>
-                <div class="news-teaser">
-                    <span>{posts.POST_DATE}: <a href="{posts.TOPIC_LINK}">{posts.TOPIC_NAME}</a></span>
-                    <p>{posts.POST_TEXT}</p>
+            <!-- ELSE -->
+                <!-- BEGIN posts -->
+                <div class="singleNews">
+                    <div class="shout-avatar">
+                        <a href="memberlist.php?mode=viewprofile&u={posts.AUTHOR_ID}" title="{posts.AUTHOR_NAME}">
+                            <!-- IF not posts.AVATAR == '' -->
+                            <img src="./download/file.php?avatar={posts.AVATAR}">
+                            <!-- ELSE-->
+                            <span class="avatar-none">{posts.AUTHOR_NAME}</span>
+                            <!-- ENDIF -->
+                        </a>
+                    </div>
+                    <div class="news-teaser">
+                        <span>{posts.POST_DATE}: <a href="{posts.TOPIC_LINK}">{posts.TOPIC_NAME}</a></span>
+                        <p>{posts.POST_TEXT}</p>
+                    </div>
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-            </div>
-            <!-- END posts -->
+                <!-- END posts -->
+            <!-- ENDIF -->
         </div>
         <div class="clear"></div>
     </div>

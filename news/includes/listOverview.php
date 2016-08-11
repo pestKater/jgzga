@@ -82,9 +82,14 @@ foreach ($pictures as $picture) {
 }
 
 // get last posts:
-$topics = getLastTopics();
+$topics = check_post_unread_count();
 
-foreach($topics as $topic) {
+if(!$topics) {
+    $template->assign_vars(array(
+        'NO_POSTS' => true,
+    ));
+} else {
+    foreach($topics as $topic) {
     $link       = 'viewtopic.php?f='.$topic['forum_id'].'&p='.$topic['topic_last_post_id'].'#p'.$topic['topic_last_post_id'];
     $name       = $topic['topic_title'];
     
@@ -107,8 +112,8 @@ foreach($topics as $topic) {
         'POST_TEXT'     => $postText,
         'POST_DATE'     => $postDate,
         'AUTHOR_ID'     => $poster['user_id'],
-        'AVATAR' => $poster['user_avatar'],
+        'AVATAR'        => $poster['user_avatar'],
         'AUTHOR_NAME'   => $poster['username'],
     ));   
 }
-
+}

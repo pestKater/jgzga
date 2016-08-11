@@ -409,3 +409,43 @@ function getPostText($postId) {
     
     return $row;
 }
+
+function check_post_unread_count()
+{
+    global $db, $user, $auth;
+
+    $forums = array_unique(array_keys($auth->acl_getf('f_read', true)));
+    
+    if ($user->data['user_id'] == ANONYMOUS)
+    {
+        return getLastTopics();
+    }
+    
+    // Select unread topics
+    $unread_topics = array();
+    $sql = 'SELECT t.topic_id, t.forum_id, t.topic_last_post_id, t.topic_title
+            FROM ' . TOPICS_TABLE . ' t
+            LEFT JOIN ' . TOPICS_TRACK_TABLE . ' tt ON (tt.user_id = ' . $user->data['user_id'] . ' AND t.topic_id = tt.topic_id) 
+            LEFT JOIN ' . FORUMS_TRACK_TABLE . ' ft ON (ft.user_id = ' . $user->data['user_id'] . ' AND t.forum_id = ft.forum_id) 
+            WHERE t.topic_last_post_time > ' . $user->data['user_lastmark'] . ' AND
+            ' . $db->sql_in_set('t.forum_id', $forums) . ' AND
+            (
+                (tt.mark_time IS NOT NULL AND t.topic_last_post_time > tt.mark_time) OR
+                (tt.mark_time IS NULL AND ft.mark_time IS NOT NULL AND t.topic_last_post_time > ft.mark_time) OR
+                (tt.mark_time IS NULL AND ft.mark_time IS NULL)
+            )
+            ORDER BY t.topic_last_post_time LIMIT 5';
+    
+    $result = $db->sql_query($sql);
+    while ($row = $db->sql_fetchrow($result))
+    {
+        $unread_topics[] = $row;
+    }
+    
+    if (empty($unread_topics))
+    {
+        return false;
+    }
+    
+    return $unread_topics;
+}

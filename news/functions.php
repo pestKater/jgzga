@@ -118,7 +118,7 @@ function getCategoryName($id) {
 function getUserData($userId) {
     global $db;
     
-    $sql = 'SELECT username, user_avatar, user_rank FROM ' . USERS_TABLE . " WHERE user_id = " . $userId;
+    $sql = 'SELECT user_id, username, user_avatar, user_rank FROM ' . USERS_TABLE . " WHERE user_id = " . $userId;
     $result = $db->sql_query($sql);
     $row = $db->sql_fetchrow($result);
     $db->sql_freeresult($result);

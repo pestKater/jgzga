@@ -26,16 +26,24 @@
     }
     .slides .mySlides {
         height:150px;
-        background:none;
     }
     .mySlides img {
         display:none;
+    }
+    .slides .mySlides .news-information {
+        background-color: #222222;
     }
     .members {
         width:100%;
     }
     .unitmember {
         width:100%;
+    }
+    .shout-avatar img,
+    .shout-avatar .avatar-none {
+        height:30px;
+        width:30px;
+        line-height: 30px;
     }
     
   #footer-custom .online-list {

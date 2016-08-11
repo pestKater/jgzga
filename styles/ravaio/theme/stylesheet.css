@@ -13,6 +13,7 @@
 }
 
 .unit {
+    width:100%;
     margin-bottom: 60px;
 }
 .unit h3 {
@@ -36,12 +37,11 @@
     text-align: justify;
 }
 .members {
-    width:470px;
+    width:50%;
     margin:auto;
 }
 .unitmember {
-    width:230px;
-    margin:2px;
+    width:50%;
     float:left;
     padding:10px;
     transition: all 0.5s;

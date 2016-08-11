@@ -21,6 +21,23 @@
   }
 }
 @media (max-width: 900px) {
+    .overview-widget {
+        width:100%;
+    }
+    .slides .mySlides {
+        height:150px;
+        background:none;
+    }
+    .mySlides img {
+        display:none;
+    }
+    .unitmember {
+        width:100%;
+    }
+    .unitmember img {
+        display:none;
+    }
+    
   #footer-custom .online-list {
     padding: 0;
     width: 100%;
@@ -340,6 +357,7 @@
   }
 }
 @media (max-width: 500px) {
+    
   .chunk {
     padding: 0 6px !important;
   }

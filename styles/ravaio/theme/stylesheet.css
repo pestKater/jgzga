@@ -273,6 +273,10 @@
     width:100%;
 }
 
+.overview-buttons {
+    text-align: center;
+    font-size:1.2em;
+}
 .overview-widget {
     width:50%;
     float:left;
@@ -419,6 +423,12 @@
     color:#e8e8e8;
     margin-top:20px;
     margin-bottom:20px;
+}
+
+.row {
+    width:100%;
+    clear:both;
+    display:block;
 }
 
 *,

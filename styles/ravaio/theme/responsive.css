@@ -31,11 +31,11 @@
     .mySlides img {
         display:none;
     }
-    .unitmember {
+    .members {
         width:100%;
     }
-    .unitmember img {
-        display:none;
+    .unitmember {
+        width:100%;
     }
     
   #footer-custom .online-list {

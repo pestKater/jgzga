@@ -16,7 +16,7 @@ foreach($upcomingEvents as $upcome) {
     $template->assign_block_vars('article', array(
         'ARTICLE_ID'    => $upcome['id'],
         'TITLE'         => $upcome['title'],
-        'CONTENT'       => substr($upcome['content'], 0, 350),
+        'CONTENT'       => str_replace('\n', " " , substr($upcome['content'], 0, 350)),
         'DUE_DATE'      => date('d.m.Y \u\m H:i',strtotime($upcome['dueDate'])),
     ));
 }
@@ -24,7 +24,7 @@ foreach($pastEvents as $past) {
     $template->assign_block_vars('past', array(
         'ARTICLE_ID'    => $past['id'],
         'TITLE'         => $past['title'],
-        'CONTENT'       => substr($past['content'], 0, 350),
+        'CONTENT'       => str_replace('\n', " " , substr($past['content'], 0, 350)),
         'DUE_DATE'      => date('d.m.Y \u\m H:i',strtotime($past['dueDate'])),
     ));
 }

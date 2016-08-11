@@ -17,7 +17,7 @@ foreach($featuredArticles as $singleFeatured) {
     $template->assign_block_vars('featured', array(
         'ID'        => $singleFeatured['id'],
         'TITLE'     => $singleFeatured['title'],
-        'CONTENT'   => substr($singleFeatured['content'], 0, 590),
+        'CONTENT'   => str_replace('\n', " " , substr($singleFeatured['content'], 0, 590)),
     ));
 }
 
@@ -31,7 +31,7 @@ foreach($otherArticles as $singleArticle) {
     $template->assign_block_vars('articles', array(
         'ID'        => $singleArticle['id'],
         'TITLE'     => $singleArticle['title'],
-        'CONTENT'   => substr($singleArticle['content'], 0, 190),
+        'CONTENT'   => str_replace('\n', " " , substr($singleArticle['content'], 0, 190)),
         'CATEGORY'  => $category,
     ));
 }

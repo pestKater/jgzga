@@ -92,8 +92,12 @@
 			<!-- EVENT overall_header_body_before -->
 
 			<a id="top" class="anchor" accesskey="t"></a>
-			<div<!-- IF not RA_ENABLE --><!-- IF $RA_INDEX --> id="wrap-header-index"<!-- ELSE --> id="wrap-header"<!-- ENDIF --><!-- ELSE --><!-- IF RA_SITE_DESC gt 0 and $RA_INDEX --> id="wrap-header-index"<!-- ELSE --> id="wrap-header"<!-- ENDIF --><!-- ENDIF -->>
-				<div class="site-header chunk">
+                        <!-- IF IS_LANDINGPAGE -->
+                            <div id="wrap-header-index">
+                        <!-- ELSE -->
+                            <div<!-- IF not RA_ENABLE --><!-- IF $RA_INDEX --> id="wrap-header-index"<!-- ELSE --> id="wrap-header"<!-- ENDIF --><!-- ELSE --><!-- IF RA_SITE_DESC gt 0 and $RA_INDEX --> id="wrap-header-index"<!-- ELSE --> id="wrap-header"<!-- ENDIF --><!-- ENDIF -->>
+			<!-- ENDIF -->
+                            <div class="site-header chunk">
 					<a id="logo" href="<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->" title="<!-- IF U_SITE_HOME -->{L_SITE_HOME}<!-- ELSE -->{L_INDEX}<!-- ENDIF -->"<!-- IF RA_LOGO_TYPE --> class="logo_text"<!-- ENDIF -->><!-- IF RA_LOGO_TYPE -->{RA_LOGO_TEXT}<!-- ELSE -->{SITE_LOGO_IMG}<!-- ENDIF --></a>
 
 					<nav>

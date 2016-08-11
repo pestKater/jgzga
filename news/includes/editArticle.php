@@ -32,7 +32,7 @@ if($id == 'new') {
         'ARTICLE_ID'    => $article['id'],
         'AUTHOR'        => $article['author'],
         'TITLE'         => $article['title'],
-        'DESCRIPTION'   => $article['content'],
+        'DESCRIPTION'   => str_replace('\n', "\r\n" , $article['content']),
         'CATEGORY'      => $article['category'],
     ));
 }

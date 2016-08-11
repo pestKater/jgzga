@@ -247,9 +247,9 @@ function getUpcomingEvents($isMember) {
     $data = array();
     
     if($isMember) {
-        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND dueDate >= NOW() ORDER BY id ASC LIMIT 3';
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND dueDate >= NOW() ORDER BY dueDate ASC LIMIT 3';
     } else {
-        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND ' . $db->sql_in_set('eventCategory', $intern, true) . ' AND dueDate >= NOW() ORDER BY id ASC LIMIT 3';
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND ' . $db->sql_in_set('eventCategory', $intern, true) . ' AND dueDate >= NOW() ORDER BY dueDate ASC LIMIT 3';
     }
     $result = $db->sql_query($sql);
     
@@ -291,9 +291,9 @@ function getAllUpcomingEvents($isMember) {
     $data = array();
     
     if($isMember) {
-        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND dueDate >= NOW() ORDER BY id ASC';
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND dueDate >= NOW() ORDER BY dueDate ASC';
     } else {
-        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND ' . $db->sql_in_set('eventCategory', $intern, true) . ' AND dueDate >= NOW() ORDER BY id ASC';
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND ' . $db->sql_in_set('eventCategory', $intern, true) . ' AND dueDate >= NOW() ORDER BY dueDate ASC';
     }
     $result = $db->sql_query($sql);
     
@@ -316,9 +316,9 @@ function getAllPastEvents($isMember) {
     $data = array();
 
     if($isMember) {
-        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND dueDate <= NOW() ORDER BY id ASC';
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND dueDate <= NOW() ORDER BY dueDate DESC';
     } else {
-        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND ' . $db->sql_in_set('eventCategory', $intern, true) . ' AND dueDate <= NOW() ORDER BY id ASC';
+        $sql = 'SELECT id, title, author, content, category, eventCategory, dueDate FROM phpbb_news_articles WHERE category = 1 AND ' . $db->sql_in_set('eventCategory', $intern, true) . ' AND dueDate <= NOW() ORDER BY dueDate DESC';
     }
     $result = $db->sql_query($sql);
     

@@ -263,7 +263,7 @@
 }
 .slides .mySlides .news-information {
     position:absolute;
-    z-index: 15;
+    z-index: 1;
     bottom:0;
     left:0;
     padding:20px;

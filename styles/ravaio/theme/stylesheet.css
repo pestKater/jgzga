@@ -450,6 +450,10 @@
                  -1px -1px 1px black;
 }
 
+.parallax-mirror {
+    z-index:1
+}
+
 *,
 *:before,
 *:after {
@@ -471,6 +475,7 @@ body {
   font-size: 10px;
   height: 100%;
   text-rendering: optimizeLegibility;
+  background:transparent !important;
 }
 h1 {
   font-size: 36px;
@@ -893,6 +898,7 @@ textarea {
   margin-bottom: 18px;
 }
 #site-desc-full {
+  background:transparent !important;
   background-position: center;
   background-repeat: no-repeat;
   background-size:cover;

@@ -1,5 +1,5 @@
 $('form').submit( function(ev) {
-    var textarea = $('form textarea');
+    var textarea = $('#formcustom textarea');
     var text = textarea.val();
 
     text = text.replace(/ä/g,"&auml;");
@@ -12,7 +12,7 @@ $('form').submit( function(ev) {
 
     textarea.val(text);
 
-    var title = $('#title');
+    var title = $('#formcustom #title');
     var text = title.val();
 
     text = text.replace(/ä/g,"&auml;");

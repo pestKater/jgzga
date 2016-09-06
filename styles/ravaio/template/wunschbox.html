@@ -1,0 +1,27 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- INCLUDE gallery/header.html -->
+
+<div class="background-main">
+    <div class="chunk">
+        <div class="panel">
+            <div class="inner">      
+                <div id="message-box">
+                    <form method="POST" class="formcustom" id="gallery-form" accept-charset="UTF-8" action="wunschbox/handlers/createUser.php">
+                        <input placeholder="Nickname" class="input" type="hidden" name="nick" id="title" size="45" tabindex="2" value="{NICK}">
+                        <input placeholder="Nickname" class="input" type="hidden" name="mail" id="title" size="45" tabindex="2" value="{EMAIL}">
+                        <input placeholder="Passwort eingeben" class="input" type="password" name="pass1" id="title" size="45" tabindex="2" required>
+                        <input placeholder="Passwort wiederholen" class="input" type="password" name="pass2" id="title" size="45" tabindex="2" required>
+                        <input type="hidden" name="userid" id="author" value="{USERID}">
+                        <input type="submit" name="submit" value="Absenden" class="button">
+                    </form>
+                </div>
+                <!-- INCLUDEJS forms.js -->
+            </div>
+        </div>        
+    </div>
+</div>
+
+
+<!-- INCLUDE jumpbox.html -->
+<!-- INCLUDE overall_footer.html -->

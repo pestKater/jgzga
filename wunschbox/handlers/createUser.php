@@ -47,7 +47,12 @@ $mysqli = new mysqli('localhost', 'bugs', 'ffets2016!bugs', 'bugs');
 
 $sql = "INSERT INTO mantis_user_profile_table (username, email, password, enabled, protected, access_level, date_created) VALUES ($nick, $mail, $password, $enabled, $protected, $access, UNIX_TIMESTAMP())";
 
-$mysqli->query($sql);
+if($mysqli->query($sql) === TRUE) {
+    echo "Geklappt";
+    exit;
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
 
 $mysqli->close();
 

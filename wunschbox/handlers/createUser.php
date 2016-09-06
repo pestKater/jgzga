@@ -45,7 +45,7 @@ if(!isMember($userid)) {
 
 $mysqli = new mysqli('localhost', 'bugs', 'ffets2016!bugs', 'bugs');
 
-$sql = "INSERT INTO mantis_user_profile_table (username, email, password, enabled, protected, access_level, date_created) VALUES ($nick, $mail, $password, $enabled, $protected, $access, UNIX_TIMESTAMP())";
+$sql = "INSERT INTO mantis_user_table (username, email, password, enabled, protected, access_level, date_created) VALUES ($nick, $mail, $password, $enabled, $protected, $access, UNIX_TIMESTAMP())";
 
 if($mysqli->query($sql) === TRUE) {
     echo "Geklappt";

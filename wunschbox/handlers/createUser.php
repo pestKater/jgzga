@@ -28,6 +28,10 @@ $p2 = $request->variable('pass2', '');
 $enabled = 1;
 $protected = 0;
 $access = 25;
+$cookie = auth_generate_unique_cookie_string();
+
+var_dump($cookie);
+die;
 
 
 // Abfangen falls die Passwörter nicht übereinstimmen

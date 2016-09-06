@@ -17,6 +17,7 @@ function isMember($userId) {
 }
 
 function auth_generate_unique_cookie_string() {
+    
     do {
             $t_cookie_string = crypto_generate_uri_safe_nonce( 64 );
     } while( !auth_is_cookie_string_unique( $t_cookie_string ) );
@@ -26,24 +27,17 @@ function auth_generate_unique_cookie_string() {
 
 function auth_is_cookie_string_unique( $p_cookie_string ) {
     
-    $mysqli = new mysqli('localhost', 'bugs', 'ffets2016!bugs', 'bugs');
+    $connection = mysql_connect('localhost', 'bugs', 'ffets2016!bugs') or die("Datenbank nicht verfügbar!");
+    mysql_select_db('bugs') or die("Tabelle nicht verfügbar!");
 
-    $sql = "SELECT COUNT(*) FROM {user} WHERE cookie_string='$p_cookie_string'";
-
-    $result = $mysqli->query($sql);
+    $query = "SELECT COUNT(*) AS count FROM mantis_user_table WHERE cookie_string = '$p_cookie_string'";
     
-    $row = $result->fetch_assoc();
-    
-    var_dump($row);
-    die;
+    $result = mysql_query($query) OR die("Error: $query <br>".mysql_error());
+    $row = mysql_fetch_object($result);
 
-    $mysqli->close();
-    
-    db_param_push();
-    $t_query = 'SELECT COUNT(*) FROM {user} WHERE cookie_string=' . db_param();
-    $t_result = db_query( $t_query, array( $p_cookie_string ) );
-
-    $t_count = db_result( $t_result );
+    $t_count = $row->count;
+   
+    mysql_close($connection);
 
     if( $t_count > 0 ) {
             return false;

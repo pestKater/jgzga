@@ -30,10 +30,6 @@ $protected = 0;
 $access = 25;
 $cookie = auth_generate_unique_cookie_string();
 
-var_dump($cookie);
-die;
-
-
 // Abfangen falls die Passwörter nicht übereinstimmen
 if($p1 == $p2) {
     $password = md5($p1);
@@ -47,18 +43,14 @@ if(!isMember($userid)) {
     exit;
 }
 
-$mysqli = new mysqli('localhost', 'bugs', 'ffets2016!bugs', 'bugs');
+// In Datenbank schreiben
+$query = "INSERT INTO mantis_user_table (username, email, password, enabled, protected, access_level, cookie_string, date_created) VALUES ('$nick', '$mail', '$password', '$enabled', '$protected', '$access', '$cookie', UNIX_TIMESTAMP())";
+$connection = mysql_connect('localhost', 'bugs', 'ffets2016!bugs') or die("Datenbank nicht verfügbar!");
+mysql_select_db('bugs') or die("Tabelle nicht verfügbar!");
 
-$sql = "INSERT INTO mantis_user_table (username, email, password, enabled, protected, access_level, date_created) VALUES ($nick, $mail, $password, $enabled, $protected, $access, UNIX_TIMESTAMP())";
+$result = mysql_query($query) OR die("Error: $query <br>".mysql_error());
 
-if($mysqli->query($sql) === TRUE) {
-    echo "Geklappt";
-    exit;
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
+mysql_close($connection);
 
-$mysqli->close();
-
-//header('Location: http://89.163.134.245/bugs/');
+header('Location: http://89.163.134.245/bugs/');
 ?>

@@ -56,5 +56,5 @@ if($mysqli->query($sql) === TRUE) {
 
 $mysqli->close();
 
-header('Location: http://89.163.134.245/bugs/');
+//header('Location: http://89.163.134.245/bugs/');
 ?>

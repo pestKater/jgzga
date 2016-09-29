@@ -18,7 +18,7 @@
         <div class="pic-desc"><p>{DESCRIPTION}</p></div>
         <div class="pic-poster">
             <div class="avatar-container">
-                <a href="memberlist.php?mode=viewprofile&u={USERID}" class="avatar">
+                <a href="memberlist.php?mode=viewprofile&u={USER_ID}" class="avatar">
                     <!-- IF not AVATAR == '' -->
                     <img class="avatar" src="./download/file.php?avatar={AVATAR}">
                     <!-- ELSE-->
@@ -29,7 +29,7 @@
             <div class="userinfo">
 
                 <ul class="pic-info-list">
-                    <li class="username"><a href="memberlist.php?mode=viewprofile&u={USERID}">{USER}</a></li>
+                    <li class="username"><a href="memberlist.php?mode=viewprofile&u={USER_ID}">{USER}</a></li>
                     <!-- IF not RANK == '' -->
                         <li class="userrank">{RANK}</li>
                     <!-- ENDIF -->

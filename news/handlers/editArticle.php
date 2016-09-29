@@ -84,7 +84,7 @@ if($request->variable('mode', '') == 'edit') {
         $sql = 'DELETE FROM phpbb_news_articles WHERE id= ' . $pictureId;
         $db->sql_query($sql);
         
-        header('Location: ' . $phpbb_root_path. 'gallery.' . $phpEx . '?list=image');
+        header('Location: ' . $phpbb_root_path. 'news.' . $phpEx);
         exit;
     }
 }

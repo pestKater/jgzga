@@ -5,29 +5,19 @@ $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include('../common.php');
 require_once('php_image_magician.php');
 
-$sql = "SELECT id FROM phpbb_gallery ORDER BY id DESC LIMIT 1";
+$pictures = array();
+$sql = "SELECT id, name FROM phpbb_gallery";
 $result = $db->sql_query($sql);
-$row = $db->sql_fetchrow($result);
 
-$maxId = $row['id'];
-
-$sql = "SELECT id FROM phpbb_gallery ORDER BY id ASC LIMIT 1";
-$result = $db->sql_query($sql);
-$row = $db->sql_fetchrow($result);
-
-$minId = $row['id'];
-
-$random = mt_rand($minId, $maxId);
-
-$pictureId = false;
-while($pictureId == false) {
-    $sql = "SELECT id, name FROM phpbb_gallery WHERE id = " . $random;
-    $result = $db->sql_query($sql);
-    $row = $db->sql_fetchrow($result);
-    
-    $pictureId = $row['id'];
-    $pictureName = $row['name'];
+while($row = $db->sql_fetchrow($result)) {
+    $pictures[$row['id']]['id'] = $row['id'];
+    $pictures[$row['id']]['name'] = $row['name'];
 }
+
+$picture = array_rand($pictures);
+
+$pictureId = $pictures[$picture]['id'];
+$pictureName = $pictures[$picture]['name'];
 
 if(strlen($pictureName) >= 20) {
     $pictureName = substr($pictureName, 0, 15) . '..';

@@ -36,7 +36,7 @@ $sql_arr = array(
 if($newsite) {
 	$sql = 'INSERT INTO phpbb_customsite ' . $db->sql_build_array('INSERT', $sql_arr); 
 } else {
-	$sql = 'UPDATE phpbb_customsite SET ' . $db->sql_build_array('UPDATE', $sql_arr);
+	$sql = 'UPDATE phpbb_customsite SET ' . $db->sql_build_array('UPDATE', $sql_arr) . 'WHERE id=' . $pageid;
 }
 
 $db->sql_query($sql);

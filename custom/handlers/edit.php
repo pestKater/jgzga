@@ -16,13 +16,15 @@ $pageid 	= $request->variable('pageid', '');
 $newsite        = true;
 
 // 2. Checken ob Datensatz vorhanden
-$sql = "SELECT count(*) AS count FROM phpbb_customsite WHERE id=" . $pageid;
-$result = $db->sql_query($sql);
-$row = $db->sql_fetchrow($result);
-$db->sql_freeresult($result);
-
-if($row['count'] == '1') {
+if($pageid != 'new') {
+    $sql = "SELECT count(*) AS count FROM phpbb_customsite WHERE id=" . $pageid;
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($result);
+    
+    if($row['count'] == '1') {
 	$newsite = false;
+    }
 }
 
 // 3. Schreiben

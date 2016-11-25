@@ -20,7 +20,7 @@ if($article != false) {
  
     $template->assign_vars(array(
         'TITLE'         => $article['title'],
-        'DESCRIPTION'   => str_replace('\n', '<br>', $article['content']),
+        'NEWS_DESCRIPTION'   => str_replace('\n', '<br>', $article['content']),
         'DATE'          => date("d.m.Y", strtotime($article['postdate'])),
         'FOLDERNAME'    => $category,
         'FOLDER_ID'     => $article['category'],

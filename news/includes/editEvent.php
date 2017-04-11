@@ -19,6 +19,7 @@ if($id == 'new') {
         'DATE'          => date("Y-m-d H:i:s"),
         'AUTHOR'        => $userId,
         'MODE'          => 'new',
+        'DUE_DATE'      => date("Y-m-d 19:30:00"),
     ));
     
 } else {

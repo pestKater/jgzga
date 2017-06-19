@@ -405,11 +405,24 @@
     transition: all 0.5s;
     width:250px;
 }
+.media-slider-steam {
+    position:absolute;
+    right:-200px;
+    top:40%;
+    z-index: 1;
+    font-size: 1.5em;
+    transition: all 0.5s;
+    width:250px;
+}
 .media-slider-youtube:hover {
     right:0;
     background-color: rgba(0,0,0,0.5);
 }
 .media-slider-facebook:hover {
+    right:0;
+    background-color: rgba(0,0,0,0.5);
+}
+.media-slider-steam:hover {
     right:0;
     background-color: rgba(0,0,0,0.5);
 }
